@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, ImageProps, ViewProps } from "@aws-amplify/ui-react";
+import { DividerProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +17,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ModelsOverridesProps = {
-    Models?: PrimitiveOverrideProps<ViewProps>;
-    Heading?: PrimitiveOverrideProps<FlexProps>;
-    image40462627?: PrimitiveOverrideProps<ImageProps>;
-    image40462628?: PrimitiveOverrideProps<ImageProps>;
-    NavBar?: PrimitiveOverrideProps<FlexProps>;
+export declare type TyOverridesProps = {
+    Ty?: PrimitiveOverrideProps<FlexProps>;
+    Content?: PrimitiveOverrideProps<FlexProps>;
+    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
+    Icon?: PrimitiveOverrideProps<ViewProps>;
+    Vector?: PrimitiveOverrideProps<IconProps>;
+    "You have successfully submitted your responses!"?: PrimitiveOverrideProps<TextProps>;
+    label?: PrimitiveOverrideProps<TextProps>;
+    Divider?: PrimitiveOverrideProps<DividerProps>;
 } & EscapeHatchProps;
-export declare type ModelsProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: ModelsOverridesProps | undefined | null;
+export declare type TyProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: TyOverridesProps | undefined | null;
 }>;
-export default function Models(props: ModelsProps): React.ReactElement;
+export default function Ty(props: TyProps): React.ReactElement;

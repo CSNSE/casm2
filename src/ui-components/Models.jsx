@@ -58,6 +58,11 @@ export default function Models(props) {
         objectFit="unset"
         {...getOverrideProps(overrides, "image40462628")}
       ></Image>
+      <Flex
+        width="390px"
+        height="67px"
+        {...getOverrideProps(overrides, "NavBar")}
+      ></Flex>
     </View>
   );
 }

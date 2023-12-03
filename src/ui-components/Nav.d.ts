@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, ImageProps, ViewProps } from "@aws-amplify/ui-react";
+import { FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +17,14 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ModelsOverridesProps = {
-    Models?: PrimitiveOverrideProps<ViewProps>;
-    Heading?: PrimitiveOverrideProps<FlexProps>;
-    image40462627?: PrimitiveOverrideProps<ImageProps>;
-    image40462628?: PrimitiveOverrideProps<ImageProps>;
-    NavBar?: PrimitiveOverrideProps<FlexProps>;
+export declare type NavOverridesProps = {
+    Nav?: PrimitiveOverrideProps<FlexProps>;
+    Home?: PrimitiveOverrideProps<TextProps>;
+    Survey?: PrimitiveOverrideProps<TextProps>;
+    Video?: PrimitiveOverrideProps<TextProps>;
+    Models?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type ModelsProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: ModelsOverridesProps | undefined | null;
+export declare type NavProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: NavOverridesProps | undefined | null;
 }>;
-export default function Models(props: ModelsProps): React.ReactElement;
+export default function Nav(props: NavProps): React.ReactElement;

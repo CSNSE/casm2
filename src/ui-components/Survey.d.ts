@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { RadioProps, SelectFieldProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, RadioProps, SelectFieldProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -22,9 +22,15 @@ export declare type SurveyOverridesProps = {
     Radio4051413?: PrimitiveOverrideProps<RadioProps>;
     SelectField?: PrimitiveOverrideProps<SelectFieldProps>;
     Radio4051419?: PrimitiveOverrideProps<RadioProps>;
-    Radio4051425?: PrimitiveOverrideProps<RadioProps>;
-    Radio4051431?: PrimitiveOverrideProps<RadioProps>;
-    Radio4051438?: PrimitiveOverrideProps<RadioProps>;
+    Radio4061522?: PrimitiveOverrideProps<RadioProps>;
+    Radio4061523?: PrimitiveOverrideProps<RadioProps>;
+    Radio4061543?: PrimitiveOverrideProps<RadioProps>;
+    Radio4061544?: PrimitiveOverrideProps<RadioProps>;
+    TextField?: PrimitiveOverrideProps<TextFieldProps>;
+    label4070389?: PrimitiveOverrideProps<TextProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
+    label4070390?: PrimitiveOverrideProps<TextProps>;
+    label4070391?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type SurveyProps = React.PropsWithChildren<Partial<ViewProps> & {
     overrides?: SurveyOverridesProps | undefined | null;
