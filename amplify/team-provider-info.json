@@ -17,6 +17,9 @@
       },
       "api": {
         "casm2": {}
+      },
+      "storage": {
+        "s3casm2storage4c9c0b58": {}
       }
     }
   }

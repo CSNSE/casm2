@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { DividerProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +17,19 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type TyOverridesProps = {
-    Ty?: PrimitiveOverrideProps<FlexProps>;
-    Content?: PrimitiveOverrideProps<FlexProps>;
-    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
-    "You have successfully submitted your responses!"?: PrimitiveOverrideProps<TextProps>;
+export declare type UpdateOverridesProps = {
+    Update?: PrimitiveOverrideProps<ViewProps>;
+    TextField41652235?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField41652236?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField41652237?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField41652238?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField41652239?: PrimitiveOverrideProps<TextFieldProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
     label?: PrimitiveOverrideProps<TextProps>;
-    Divider?: PrimitiveOverrideProps<DividerProps>;
 } & EscapeHatchProps;
-export declare type TyProps = React.PropsWithChildren<Partial<FlexProps> & {
-    survey?: any;
+export declare type UpdateProps = React.PropsWithChildren<Partial<ViewProps> & {
+    Updated?: any;
 } & {
-    overrides?: TyOverridesProps | undefined | null;
+    overrides?: UpdateOverridesProps | undefined | null;
 }>;
-export default function Ty(props: TyProps): React.ReactElement;
+export default function Update(props: UpdateProps): React.ReactElement;

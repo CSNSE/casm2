@@ -6,11 +6,18 @@
 
 export { default as ConsentForm } from "./ConsentForm";
 export { default as Home } from "./Home";
+export { default as ModelEye } from "./ModelEye";
 export { default as Models } from "./Models";
 export { default as Nav } from "./Nav";
+export { default as Nav2 } from "./Nav2";
 export { default as Survey } from "./Survey";
+export { default as SurveyCreateForm } from "./SurveyCreateForm";
+export { default as SurveyModelEyeCollection } from "./SurveyModelEyeCollection";
+export { default as SurveyUpdateForm } from "./SurveyUpdateForm";
+export { default as Title } from "./Title";
 export { default as TodoCreateForm } from "./TodoCreateForm";
 export { default as TodoUpdateForm } from "./TodoUpdateForm";
 export { default as Ty } from "./Ty";
+export { default as Update } from "./Update";
 export { default as Video } from "./Video";
 export { default as studioTheme } from "./studioTheme";

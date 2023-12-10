@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { DividerProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +17,20 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type TyOverridesProps = {
-    Ty?: PrimitiveOverrideProps<FlexProps>;
-    Content?: PrimitiveOverrideProps<FlexProps>;
-    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
-    "You have successfully submitted your responses!"?: PrimitiveOverrideProps<TextProps>;
-    label?: PrimitiveOverrideProps<TextProps>;
-    Divider?: PrimitiveOverrideProps<DividerProps>;
+export declare type Nav2OverridesProps = {
+    Nav2?: PrimitiveOverrideProps<FlexProps>;
+    Home?: PrimitiveOverrideProps<TextProps>;
+    Survey?: PrimitiveOverrideProps<TextProps>;
+    Video?: PrimitiveOverrideProps<TextProps>;
+    Models?: PrimitiveOverrideProps<TextProps>;
+    "\u270E"?: PrimitiveOverrideProps<TextProps>;
+    "\uD83D\uDDD1"?: PrimitiveOverrideProps<TextProps>;
+    "\u2795"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type TyProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type Nav2Props = React.PropsWithChildren<Partial<FlexProps> & {
     survey?: any;
+    todo?: any;
 } & {
-    overrides?: TyOverridesProps | undefined | null;
+    overrides?: Nav2OverridesProps | undefined | null;
 }>;
-export default function Ty(props: TyProps): React.ReactElement;
+export default function Nav2(props: Nav2Props): React.ReactElement;

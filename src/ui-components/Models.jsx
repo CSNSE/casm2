@@ -21,7 +21,7 @@ export default function Models(props) {
       overflow="hidden"
       position="relative"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(4,125,149,1)"
+      backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "Models")}
       {...rest}
     >
@@ -58,11 +58,6 @@ export default function Models(props) {
         objectFit="unset"
         {...getOverrideProps(overrides, "image40462628")}
       ></Image>
-      <Flex
-        width="390px"
-        height="67px"
-        {...getOverrideProps(overrides, "NavBar")}
-      ></Flex>
     </View>
   );
 }

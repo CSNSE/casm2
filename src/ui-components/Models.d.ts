@@ -22,7 +22,6 @@ export declare type ModelsOverridesProps = {
     Heading?: PrimitiveOverrideProps<FlexProps>;
     image40462627?: PrimitiveOverrideProps<ImageProps>;
     image40462628?: PrimitiveOverrideProps<ImageProps>;
-    NavBar?: PrimitiveOverrideProps<FlexProps>;
 } & EscapeHatchProps;
 export declare type ModelsProps = React.PropsWithChildren<Partial<ViewProps> & {
     overrides?: ModelsOverridesProps | undefined | null;

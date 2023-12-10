@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3casm2storage4c9c0b58",
+  "bucketName": "casm2-storage-4c9c0b58",
+  "policyUUID": "eb65f05d",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

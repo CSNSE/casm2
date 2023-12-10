@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, RadioProps, SelectFieldProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextFieldProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -19,20 +19,16 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SurveyOverridesProps = {
     Survey?: PrimitiveOverrideProps<ViewProps>;
-    Radio4051413?: PrimitiveOverrideProps<RadioProps>;
-    SelectField?: PrimitiveOverrideProps<SelectFieldProps>;
-    Radio4051419?: PrimitiveOverrideProps<RadioProps>;
-    Radio4061522?: PrimitiveOverrideProps<RadioProps>;
-    Radio4061523?: PrimitiveOverrideProps<RadioProps>;
-    Radio4061543?: PrimitiveOverrideProps<RadioProps>;
-    Radio4061544?: PrimitiveOverrideProps<RadioProps>;
-    TextField?: PrimitiveOverrideProps<TextFieldProps>;
-    label4070389?: PrimitiveOverrideProps<TextProps>;
+    TextField4128763?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4128764?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4128765?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4128766?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4128767?: PrimitiveOverrideProps<TextFieldProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
-    label4070390?: PrimitiveOverrideProps<TextProps>;
-    label4070391?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type SurveyProps = React.PropsWithChildren<Partial<ViewProps> & {
+    survey?: any;
+} & {
     overrides?: SurveyOverridesProps | undefined | null;
 }>;
 export default function Survey(props: SurveyProps): React.ReactElement;

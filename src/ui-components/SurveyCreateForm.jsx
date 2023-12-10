@@ -9,13 +9,11 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getTodo } from "../graphql/queries";
-import { updateTodo } from "../graphql/mutations";
+import { createSurvey } from "../graphql/mutations";
 const client = generateClient();
-export default function TodoUpdateForm(props) {
+export default function SurveyCreateForm(props) {
   const {
-    id: idProp,
-    todo: todoModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -25,45 +23,32 @@ export default function TodoUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
-    description: "",
-    image: "",
+    wetLab: "",
+    sim: "",
+    muscle: "",
+    no: "",
+    res: "",
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
-  const [image, setImage] = React.useState(initialValues.image);
+  const [wetLab, setWetLab] = React.useState(initialValues.wetLab);
+  const [sim, setSim] = React.useState(initialValues.sim);
+  const [muscle, setMuscle] = React.useState(initialValues.muscle);
+  const [no, setNo] = React.useState(initialValues.no);
+  const [res, setRes] = React.useState(initialValues.res);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = todoRecord
-      ? { ...initialValues, ...todoRecord }
-      : initialValues;
-    setName(cleanValues.name);
-    setDescription(cleanValues.description);
-    setImage(cleanValues.image);
+    setWetLab(initialValues.wetLab);
+    setSim(initialValues.sim);
+    setMuscle(initialValues.muscle);
+    setNo(initialValues.no);
+    setRes(initialValues.res);
     setErrors({});
   };
-  const [todoRecord, setTodoRecord] = React.useState(todoModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getTodo.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getTodo
-        : todoModelProp;
-      setTodoRecord(record);
-    };
-    queryData();
-  }, [idProp, todoModelProp]);
-  React.useEffect(resetStateValues, [todoRecord]);
   const validations = {
-    name: [{ type: "Required" }],
-    description: [],
-    image: [],
+    wetLab: [],
+    sim: [],
+    muscle: [],
+    no: [],
+    res: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -91,9 +76,11 @@ export default function TodoUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          description: description ?? null,
-          image: image ?? null,
+          wetLab,
+          sim,
+          muscle,
+          no,
+          res,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -124,16 +111,18 @@ export default function TodoUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updateTodo.replaceAll("__typename", ""),
+            query: createSurvey.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: todoRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -142,100 +131,161 @@ export default function TodoUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "TodoUpdateForm")}
+      {...getOverrideProps(overrides, "SurveyCreateForm")}
       {...rest}
     >
       <TextField
-        label="Name"
-        isRequired={true}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name: value,
-              description,
-              image,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
-      ></TextField>
-      <TextField
-        label="Description"
+        label="Wet lab"
         isRequired={false}
         isReadOnly={false}
-        value={description}
+        value={wetLab}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              description: value,
-              image,
+              wetLab: value,
+              sim,
+              muscle,
+              no,
+              res,
             };
             const result = onChange(modelFields);
-            value = result?.description ?? value;
+            value = result?.wetLab ?? value;
           }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
+          if (errors.wetLab?.hasError) {
+            runValidationTasks("wetLab", value);
           }
-          setDescription(value);
+          setWetLab(value);
         }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
+        onBlur={() => runValidationTasks("wetLab", wetLab)}
+        errorMessage={errors.wetLab?.errorMessage}
+        hasError={errors.wetLab?.hasError}
+        {...getOverrideProps(overrides, "wetLab")}
       ></TextField>
       <TextField
-        label="Image"
+        label="Sim"
         isRequired={false}
         isReadOnly={false}
-        value={image}
+        value={sim}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
-              description,
-              image: value,
+              wetLab,
+              sim: value,
+              muscle,
+              no,
+              res,
             };
             const result = onChange(modelFields);
-            value = result?.image ?? value;
+            value = result?.sim ?? value;
           }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
+          if (errors.sim?.hasError) {
+            runValidationTasks("sim", value);
           }
-          setImage(value);
+          setSim(value);
         }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
+        onBlur={() => runValidationTasks("sim", sim)}
+        errorMessage={errors.sim?.errorMessage}
+        hasError={errors.sim?.hasError}
+        {...getOverrideProps(overrides, "sim")}
+      ></TextField>
+      <TextField
+        label="Muscle"
+        isRequired={false}
+        isReadOnly={false}
+        value={muscle}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              wetLab,
+              sim,
+              muscle: value,
+              no,
+              res,
+            };
+            const result = onChange(modelFields);
+            value = result?.muscle ?? value;
+          }
+          if (errors.muscle?.hasError) {
+            runValidationTasks("muscle", value);
+          }
+          setMuscle(value);
+        }}
+        onBlur={() => runValidationTasks("muscle", muscle)}
+        errorMessage={errors.muscle?.errorMessage}
+        hasError={errors.muscle?.hasError}
+        {...getOverrideProps(overrides, "muscle")}
+      ></TextField>
+      <TextField
+        label="No"
+        isRequired={false}
+        isReadOnly={false}
+        value={no}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              wetLab,
+              sim,
+              muscle,
+              no: value,
+              res,
+            };
+            const result = onChange(modelFields);
+            value = result?.no ?? value;
+          }
+          if (errors.no?.hasError) {
+            runValidationTasks("no", value);
+          }
+          setNo(value);
+        }}
+        onBlur={() => runValidationTasks("no", no)}
+        errorMessage={errors.no?.errorMessage}
+        hasError={errors.no?.hasError}
+        {...getOverrideProps(overrides, "no")}
+      ></TextField>
+      <TextField
+        label="Res"
+        isRequired={false}
+        isReadOnly={false}
+        value={res}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              wetLab,
+              sim,
+              muscle,
+              no,
+              res: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.res ?? value;
+          }
+          if (errors.res?.hasError) {
+            runValidationTasks("res", value);
+          }
+          setRes(value);
+        }}
+        onBlur={() => runValidationTasks("res", res)}
+        errorMessage={errors.res?.errorMessage}
+        hasError={errors.res?.hasError}
+        {...getOverrideProps(overrides, "res")}
       ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || todoModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -245,10 +295,7 @@ export default function TodoUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || todoModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

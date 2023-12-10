@@ -8,37 +8,43 @@
 import * as React from "react";
 import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
-import { createSurvey } from "../graphql/mutations";
+import { updateSurvey } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
-import { Button, TextField, View } from "@aws-amplify/ui-react";
+import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 const client = generateClient();
-export default function Survey(props) {
-  const { survey, overrides, ...rest } = props;
+export default function Update(props) {
+  const { Updated, overrides, ...rest } = props;
   const [
-    textFieldFourOneTwoEightSevenSixSixValue,
-    setTextFieldFourOneTwoEightSevenSixSixValue,
+    textFieldFourOneSixFiveTwoTwoThreeEightValue,
+    setTextFieldFourOneSixFiveTwoTwoThreeEightValue,
   ] = useState("");
   const [
-    textFieldFourOneTwoEightSevenSixFourValue,
-    setTextFieldFourOneTwoEightSevenSixFourValue,
+    textFieldFourOneSixFiveTwoTwoThreeSixValue,
+    setTextFieldFourOneSixFiveTwoTwoThreeSixValue,
   ] = useState("");
   const [
-    textFieldFourOneTwoEightSevenSixSevenValue,
-    setTextFieldFourOneTwoEightSevenSixSevenValue,
+    textFieldFourOneSixFiveTwoTwoThreeNineValue,
+    setTextFieldFourOneSixFiveTwoTwoThreeNineValue,
   ] = useState("");
   const [
-    textFieldFourOneTwoEightSevenSixThreeValue,
-    setTextFieldFourOneTwoEightSevenSixThreeValue,
+    textFieldFourOneSixFiveTwoTwoThreeFiveValue,
+    setTextFieldFourOneSixFiveTwoTwoThreeFiveValue,
+  ] = useState("");
+  const [
+    textFieldFourOneSixFiveTwoTwoThreeSevenValue,
+    setTextFieldFourOneSixFiveTwoTwoThreeSevenValue,
   ] = useState("");
   const buttonOnClick = async () => {
     await client.graphql({
-      query: createSurvey.replaceAll("__typename", ""),
+      query: updateSurvey.replaceAll("__typename", ""),
       variables: {
         input: {
-          wetLab: textFieldFourOneTwoEightSevenSixSixValue,
-          sim: textFieldFourOneTwoEightSevenSixFourValue,
-          muscle: textFieldFourOneTwoEightSevenSixSevenValue,
-          no: textFieldFourOneTwoEightSevenSixThreeValue,
+          wetLab: textFieldFourOneSixFiveTwoTwoThreeEightValue,
+          sim: textFieldFourOneSixFiveTwoTwoThreeSixValue,
+          muscle: textFieldFourOneSixFiveTwoTwoThreeNineValue,
+          no: textFieldFourOneSixFiveTwoTwoThreeFiveValue,
+          res: textFieldFourOneSixFiveTwoTwoThreeSevenValue,
+          id: Updated?.id,
         },
       },
     });
@@ -54,15 +60,15 @@ export default function Survey(props) {
       overflow="hidden"
       position="relative"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(245,245,245,1)"
-      {...getOverrideProps(overrides, "Survey")}
+      backgroundColor="rgba(255,255,255,1)"
+      {...getOverrideProps(overrides, "Update")}
       {...rest}
     >
       <TextField
         width="331px"
         height="118px"
         label='If you answered "No" to the previous question, please provide a short explanation about why.'
-        placeholder="Please Respond Here"
+        placeholder={Updated?.no}
         position="absolute"
         top="622px"
         left="29px"
@@ -70,11 +76,11 @@ export default function Survey(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldFourOneTwoEightSevenSixThreeValue}
+        value={textFieldFourOneSixFiveTwoTwoThreeFiveValue}
         onChange={(event) => {
-          setTextFieldFourOneTwoEightSevenSixThreeValue(event.target.value);
+          setTextFieldFourOneSixFiveTwoTwoThreeFiveValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField4128763")}
+        {...getOverrideProps(overrides, "TextField41652235")}
       ></TextField>
       <TextField
         width="325px"
@@ -83,30 +89,34 @@ export default function Survey(props) {
         position="absolute"
         top="279px"
         left="29px"
-        placeholder="Placeholder"
+        placeholder={Updated?.sim}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldFourOneTwoEightSevenSixFourValue}
+        value={textFieldFourOneSixFiveTwoTwoThreeSixValue}
         onChange={(event) => {
-          setTextFieldFourOneTwoEightSevenSixFourValue(event.target.value);
+          setTextFieldFourOneSixFiveTwoTwoThreeSixValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField4128764")}
+        {...getOverrideProps(overrides, "TextField41652236")}
       ></TextField>
       <TextField
         width="300px"
         height="unset"
         label="Are you a resident?"
         position="absolute"
-        top="26px"
-        left="31px"
-        placeholder="Placeholder"
+        top="47px"
+        left="42px"
+        placeholder={Updated?.id}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField4128765")}
+        value={textFieldFourOneSixFiveTwoTwoThreeSevenValue}
+        onChange={(event) => {
+          setTextFieldFourOneSixFiveTwoTwoThreeSevenValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField41652237")}
       ></TextField>
       <TextField
         width="325px"
@@ -115,16 +125,16 @@ export default function Survey(props) {
         position="absolute"
         top="140px"
         left="29px"
-        placeholder="Placeholder"
+        placeholder={Updated?.wetLab}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldFourOneTwoEightSevenSixSixValue}
+        value={textFieldFourOneSixFiveTwoTwoThreeEightValue}
         onChange={(event) => {
-          setTextFieldFourOneTwoEightSevenSixSixValue(event.target.value);
+          setTextFieldFourOneSixFiveTwoTwoThreeEightValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField4128766")}
+        {...getOverrideProps(overrides, "TextField41652238")}
       ></TextField>
       <TextField
         width="331px"
@@ -133,16 +143,16 @@ export default function Survey(props) {
         position="absolute"
         top="448px"
         left="29px"
-        placeholder="Placeholder"
+        placeholder={Updated?.muscle}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldFourOneTwoEightSevenSixSevenValue}
+        value={textFieldFourOneSixFiveTwoTwoThreeNineValue}
         onChange={(event) => {
-          setTextFieldFourOneTwoEightSevenSixSevenValue(event.target.value);
+          setTextFieldFourOneSixFiveTwoTwoThreeNineValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField4128767")}
+        {...getOverrideProps(overrides, "TextField41652239")}
       ></TextField>
       <Button
         width="390px"
@@ -150,16 +160,38 @@ export default function Survey(props) {
         position="absolute"
         top="786px"
         left="0px"
-        backgroundColor="rgba(0,34,102,1)"
         size="large"
         isDisabled={false}
         variation="primary"
-        children="Submit Form"
+        children="Update"
         onClick={() => {
           buttonOnClick();
         }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
+      <Text
+        fontFamily="Inter"
+        fontSize="20px"
+        fontWeight="400"
+        color="rgba(48,64,80,1)"
+        lineHeight="30px"
+        textAlign="left"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="326px"
+        height="unset"
+        gap="unset"
+        alignItems="unset"
+        position="absolute"
+        top="2.01%"
+        bottom="94.43%"
+        left="calc(50% - 163px - -10px)"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children={`${"ID of Survey: "}${Updated?.id}`}
+        {...getOverrideProps(overrides, "label")}
+      ></Text>
     </View>
   );
 }

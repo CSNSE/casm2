@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { DividerProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ModelEyeProps } from "./ModelEye";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type TyOverridesProps = {
-    Ty?: PrimitiveOverrideProps<FlexProps>;
-    Content?: PrimitiveOverrideProps<FlexProps>;
-    "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
-    "You have successfully submitted your responses!"?: PrimitiveOverrideProps<TextProps>;
-    label?: PrimitiveOverrideProps<TextProps>;
-    Divider?: PrimitiveOverrideProps<DividerProps>;
+export declare type SECOverridesProps = {
+    SEC?: PrimitiveOverrideProps<CollectionProps>;
+    ModelEye?: ModelEyeProps;
 } & EscapeHatchProps;
-export declare type TyProps = React.PropsWithChildren<Partial<FlexProps> & {
-    survey?: any;
+export declare type SECProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => ModelEyeProps;
 } & {
-    overrides?: TyOverridesProps | undefined | null;
+    overrides?: SECOverridesProps | undefined | null;
 }>;
-export default function Ty(props: TyProps): React.ReactElement;
+export default function SEC(props: SECProps): React.ReactElement;

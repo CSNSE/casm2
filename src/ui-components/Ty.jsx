@@ -9,14 +9,13 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function Ty(props) {
-  const { overrides, ...rest } = props;
-  const iconOnClick = useNavigateAction({ type: "url", url: "\\home" });
-  const vectorOnClick = useNavigateAction({ type: "url", url: "\\home" });
+  const { survey, overrides, ...rest } = props;
+  const vectorOnClick = useNavigateAction({ type: "url", url: "\\model" });
   return (
     <Flex
       gap="16px"
       direction="column"
-      width="320px"
+      width="390px"
       height="206px"
       justifyContent="flex-start"
       alignItems="flex-start"
@@ -63,9 +62,6 @@ export default function Ty(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            onClick={() => {
-              iconOnClick();
-            }}
             {...getOverrideProps(overrides, "Icon")}
           >
             <Icon
@@ -100,11 +96,11 @@ export default function Ty(props) {
             fontWeight="700"
             color="rgba(13,26,38,1)"
             lineHeight="20px"
-            textAlign="left"
+            textAlign="center"
             display="block"
             direction="column"
             justifyContent="unset"
-            width="226px"
+            width="302px"
             height="42px"
             gap="unset"
             alignItems="unset"
@@ -130,7 +126,7 @@ export default function Ty(props) {
         display="block"
         direction="column"
         justifyContent="unset"
-        width="320px"
+        width="390px"
         height="unset"
         gap="unset"
         alignItems="unset"
@@ -142,7 +138,7 @@ export default function Ty(props) {
         {...getOverrideProps(overrides, "label")}
       ></Text>
       <Divider
-        width="320px"
+        width="390px"
         height="6px"
         shrink="0"
         size="small"
