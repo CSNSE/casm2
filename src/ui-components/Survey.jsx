@@ -30,6 +30,10 @@ export default function Survey(props) {
     textFieldFourOneTwoEightSevenSixThreeValue,
     setTextFieldFourOneTwoEightSevenSixThreeValue,
   ] = useState("");
+  const [
+    textFieldFourOneTwoEightSevenSixFiveValue,
+    setTextFieldFourOneTwoEightSevenSixFiveValue,
+  ] = useState("");
   const buttonOnClick = async () => {
     await client.graphql({
       query: createSurvey.replaceAll("__typename", ""),
@@ -39,6 +43,7 @@ export default function Survey(props) {
           sim: textFieldFourOneTwoEightSevenSixFourValue,
           muscle: textFieldFourOneTwoEightSevenSixSevenValue,
           no: textFieldFourOneTwoEightSevenSixThreeValue,
+          res: textFieldFourOneTwoEightSevenSixFiveValue,
         },
       },
     });
@@ -106,6 +111,10 @@ export default function Survey(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldFourOneTwoEightSevenSixFiveValue}
+        onChange={(event) => {
+          setTextFieldFourOneTwoEightSevenSixFiveValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField4128765")}
       ></TextField>
       <TextField

@@ -9,47 +9,152 @@ import * as React from "react";
 import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { updateSurvey } from "../graphql/mutations";
-import { getOverrideProps } from "./utils";
-import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
+import { Button, Text, TextField, View, Grid } from "@aws-amplify/ui-react";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { getSurvey } from "../graphql/queries";
 const client = generateClient();
-export default function Update(props) {
-  const { Updated, overrides, ...rest } = props;
-  const [
-    textFieldFourOneSixFiveTwoTwoThreeEightValue,
-    setTextFieldFourOneSixFiveTwoTwoThreeEightValue,
-  ] = useState("");
-  const [
-    textFieldFourOneSixFiveTwoTwoThreeSixValue,
-    setTextFieldFourOneSixFiveTwoTwoThreeSixValue,
-  ] = useState("");
-  const [
-    textFieldFourOneSixFiveTwoTwoThreeNineValue,
-    setTextFieldFourOneSixFiveTwoTwoThreeNineValue,
-  ] = useState("");
-  const [
-    textFieldFourOneSixFiveTwoTwoThreeFiveValue,
-    setTextFieldFourOneSixFiveTwoTwoThreeFiveValue,
-  ] = useState("");
-  const [
-    textFieldFourOneSixFiveTwoTwoThreeSevenValue,
-    setTextFieldFourOneSixFiveTwoTwoThreeSevenValue,
-  ] = useState("");
-  const buttonOnClick = async () => {
-    await client.graphql({
-      query: updateSurvey.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          wetLab: textFieldFourOneSixFiveTwoTwoThreeEightValue,
-          sim: textFieldFourOneSixFiveTwoTwoThreeSixValue,
-          muscle: textFieldFourOneSixFiveTwoTwoThreeNineValue,
-          no: textFieldFourOneSixFiveTwoTwoThreeFiveValue,
-          res: textFieldFourOneSixFiveTwoTwoThreeSevenValue,
-          id: Updated?.id,
-        },
-      },
-    });
+export default function EditF(props) {
+  const {
+    idProp,
+    survey: surveyModelProp,
+    onSuccess,
+    onError,
+    onSubmit,
+    onCancel,
+    onValidate,
+    onChange,
+    overrides,
+    ...rest
+  } = props;
+  const initialValues = {
+    res: "",
+    wetLab: "",
+    sim: "",
+    muscle: "",
+    no: "",
+  };
+  const [res, setRes] = React.useState(initialValues.res);
+  const [wetLab, setWetLab] = React.useState(initialValues.wetLab);
+  const [sim, setSim] = React.useState(initialValues.sim);
+  const [muscle, setMuscle] = React.useState(initialValues.muscle);
+  const [no, setNo] = React.useState(initialValues.no);
+  const [errors, setErrors] = React.useState({});
+  const resetStateValues = () => {
+    const cleanValues = surveyRecord
+      ? { ...initialValues, ...surveyRecord }
+      : initialValues;
+    setRes(cleanValues.res);
+    setWetLab(cleanValues.wetLab);
+    setSim(cleanValues.sim);
+    setMuscle(cleanValues.muscle);
+    setNo(cleanValues.no);
+    setErrors({});
+  };
+  const [surveyRecord, setSurveyRecord] = React.useState(surveyModelProp);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? (
+            await client.graphql({
+              query: getSurvey.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getSurvey
+        : surveyModelProp;
+      setSurveyRecord(record);
+    };
+    queryData();
+  }, [idProp, surveyModelProp]);
+  React.useEffect(resetStateValues, [surveyRecord]);
+  const validations = {
+    res: [],
+    wetLab: [],
+    sim: [],
+    muscle: [],
+    no: [],
+  };
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
+    let validationResponse = validateField(value, validations[fieldName]);
+    const customValidator = fetchByPath(onValidate, fieldName);
+    if (customValidator) {
+      validationResponse = await customValidator(value, validationResponse);
+    }
+    setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
+    return validationResponse;
   };
   return (
+    <Grid
+      as="form"
+      rowGap="15px"
+      columnGap="15px"
+      padding="20px"
+      onSubmit={async (event) => {
+        event.preventDefault();
+        let modelFields = {
+          res: res ?? null,
+          wetLab: wetLab ?? null,
+          sim: sim ?? null,
+          muscle: muscle ?? null,
+          no: no ?? null,
+        };
+        const validationResponses = await Promise.all(
+          Object.keys(validations).reduce((promises, fieldName) => {
+            if (Array.isArray(modelFields[fieldName])) {
+              promises.push(
+                ...modelFields[fieldName].map((item) =>
+                  runValidationTasks(fieldName, item)
+                )
+              );
+              return promises;
+            }
+            promises.push(
+              runValidationTasks(fieldName, modelFields[fieldName])
+            );
+            return promises;
+          }, [])
+        );
+        if (validationResponses.some((r) => r.hasError)) {
+          return;
+        }
+        if (onSubmit) {
+          modelFields = onSubmit(modelFields);
+        }
+        try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
+            }
+          });
+          await client.graphql({
+            query: updateSurvey.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                id: surveyRecord.id,
+                ...modelFields,
+              },
+            },
+          });
+          if (onSuccess) {
+            onSuccess(modelFields);
+          }
+        } catch (err) {
+          if (onError) {
+            const messages = err.errors.map((e) => e.message).join("\n");
+            onError(modelFields, messages);
+          }
+        }
+      }}
+      {...getOverrideProps(overrides, "SurveyUpdateForm")}
+      {...rest}
+    >
     <View
       width="390px"
       height="844px"
@@ -63,135 +168,158 @@ export default function Update(props) {
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "Update")}
       {...rest}
-    >
-      <TextField
-        width="331px"
-        height="118px"
-        label='If you answered "No" to the previous question, please provide a short explanation about why.'
-        placeholder={Updated?.no}
-        position="absolute"
-        top="622px"
-        left="29px"
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldFourOneSixFiveTwoTwoThreeFiveValue}
-        onChange={(event) => {
-          setTextFieldFourOneSixFiveTwoTwoThreeFiveValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField41652235")}
-      ></TextField>
-      <TextField
-        width="325px"
-        height="148px"
-        label="To the best of your recollection, have you practiced suturing technique using a surgical simulator?"
-        position="absolute"
-        top="279px"
-        left="29px"
-        placeholder={Updated?.sim}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldFourOneSixFiveTwoTwoThreeSixValue}
-        onChange={(event) => {
-          setTextFieldFourOneSixFiveTwoTwoThreeSixValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField41652236")}
-      ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Are you a resident?"
-        position="absolute"
-        top="47px"
-        left="42px"
-        placeholder={Updated?.id}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldFourOneSixFiveTwoTwoThreeSevenValue}
-        onChange={(event) => {
-          setTextFieldFourOneSixFiveTwoTwoThreeSevenValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField41652237")}
-      ></TextField>
-      <TextField
-        width="325px"
-        height="118px"
-        label="To the best of your recollection, have you practiced suturing technique in a wet lab"
-        position="absolute"
-        top="140px"
-        left="29px"
-        placeholder={Updated?.wetLab}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldFourOneSixFiveTwoTwoThreeEightValue}
-        onChange={(event) => {
-          setTextFieldFourOneSixFiveTwoTwoThreeEightValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField41652238")}
-      ></TextField>
-      <TextField
-        width="331px"
-        height="unset"
-        label="Based on your recollection of strabismus surgery rotation, do you think the C.A.S.M would be a good model for practicing eye muscle surgery"
-        position="absolute"
-        top="448px"
-        left="29px"
-        placeholder={Updated?.muscle}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldFourOneSixFiveTwoTwoThreeNineValue}
-        onChange={(event) => {
-          setTextFieldFourOneSixFiveTwoTwoThreeNineValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField41652239")}
-      ></TextField>
+    ><TextField
+    label="Are you a resident?"
+    isRequired={false}
+    isReadOnly={false}
+    value={res}
+    onChange={(e) => {
+      let { value } = e.target;
+      if (onChange) {
+        const modelFields = {
+          res: value,
+          wetLab,
+          sim,
+          muscle,
+          no,
+        };
+        const result = onChange(modelFields);
+        value = result?.res ?? value;
+      }
+      if (errors.res?.hasError) {
+        runValidationTasks("res", value);
+      }
+      setRes(value);
+    }}
+    onBlur={() => runValidationTasks("res", res)}
+    errorMessage={errors.res?.errorMessage}
+    hasError={errors.res?.hasError}
+    {...getOverrideProps(overrides, "res")}
+  ></TextField>
+  <TextField
+    label="To the best of your recollection, have you practiced suturing technique in a wet lab"
+    isRequired={false}
+    isReadOnly={false}
+    value={wetLab}
+    onChange={(e) => {
+      let { value } = e.target;
+      if (onChange) {
+        const modelFields = {
+          res,
+          wetLab: value,
+          sim,
+          muscle,
+          no,
+        };
+        const result = onChange(modelFields);
+        value = result?.wetLab ?? value;
+      }
+      if (errors.wetLab?.hasError) {
+        runValidationTasks("wetLab", value);
+      }
+      setWetLab(value);
+    }}
+    onBlur={() => runValidationTasks("wetLab", wetLab)}
+    errorMessage={errors.wetLab?.errorMessage}
+    hasError={errors.wetLab?.hasError}
+    {...getOverrideProps(overrides, "wetLab")}
+  ></TextField>
+  <TextField
+    label="To the best of your recollection, have you practiced suturing technique using a surgical simulator?"
+    isRequired={false}
+    isReadOnly={false}
+    value={sim}
+    onChange={(e) => {
+      let { value } = e.target;
+      if (onChange) {
+        const modelFields = {
+          res,
+          wetLab,
+          sim: value,
+          muscle,
+          no,
+        };
+        const result = onChange(modelFields);
+        value = result?.sim ?? value;
+      }
+      if (errors.sim?.hasError) {
+        runValidationTasks("sim", value);
+      }
+      setSim(value);
+    }}
+    onBlur={() => runValidationTasks("sim", sim)}
+    errorMessage={errors.sim?.errorMessage}
+    hasError={errors.sim?.hasError}
+    {...getOverrideProps(overrides, "sim")}
+  ></TextField>
+  <TextField
+    label="Based on your recollection of strabismus surgery rotation, do you think the C.A.S.M would be a good model for practicing eye muscle surgery"
+    isRequired={false}
+    isReadOnly={false}
+    value={muscle}
+    onChange={(e) => {
+      let { value } = e.target;
+      if (onChange) {
+        const modelFields = {
+          res,
+          wetLab,
+          sim,
+          muscle: value,
+          no,
+        };
+        const result = onChange(modelFields);
+        value = result?.muscle ?? value;
+      }
+      if (errors.muscle?.hasError) {
+        runValidationTasks("muscle", value);
+      }
+      setMuscle(value);
+    }}
+    onBlur={() => runValidationTasks("muscle", muscle)}
+    errorMessage={errors.muscle?.errorMessage}
+    hasError={errors.muscle?.hasError}
+    {...getOverrideProps(overrides, "muscle")}
+  ></TextField>
+  <TextField
+    label='If you answered "No" to the previous question, please provide a short explanation about why.'
+    isRequired={false}
+    isReadOnly={false}
+    value={no}
+    onChange={(e) => {
+      let { value } = e.target;
+      if (onChange) {
+        const modelFields = {
+          res,
+          wetLab,
+          sim,
+          muscle,
+          no: value,
+        };
+        const result = onChange(modelFields);
+        value = result?.no ?? value;
+      }
+      if (errors.no?.hasError) {
+        runValidationTasks("no", value);
+      }
+      setNo(value);
+    }}
+    onBlur={() => runValidationTasks("no", no)}
+    errorMessage={errors.no?.errorMessage}
+    hasError={errors.no?.hasError}
+    {...getOverrideProps(overrides, "no")}
+  ></TextField>
       <Button
-        width="390px"
-        height="58px"
-        position="absolute"
-        top="786px"
-        left="0px"
-        size="large"
-        isDisabled={false}
+        children="Submit"
+        type="submit"
         variation="primary"
-        children="Update"
-        onClick={() => {
-          buttonOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button")}
+        isDisabled={
+          !(idProp || surveyModelProp) ||
+          Object.values(errors).some((e) => e?.hasError)
+        }
+        {...getOverrideProps(overrides, "SubmitButton")}
       ></Button>
-      <Text
-        fontFamily="Inter"
-        fontSize="20px"
-        fontWeight="400"
-        color="rgba(48,64,80,1)"
-        lineHeight="30px"
-        textAlign="left"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="326px"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="2.01%"
-        bottom="94.43%"
-        left="calc(50% - 163px - -10px)"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children={`${"ID of Survey: "}${Updated?.id}`}
-        {...getOverrideProps(overrides, "label")}
-      ></Text>
     </View>
+    </Grid>
   );
 }
+

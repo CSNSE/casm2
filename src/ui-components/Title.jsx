@@ -7,119 +7,59 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex, Heading, View } from "@aws-amplify/ui-react";
 export default function Title(props) {
   const { overrides, ...rest } = props;
   return (
-    <Flex
-      gap="10px"
-      direction="column"
-      width="366px"
+    <View
+      width="390px"
       height="844px"
-      justifyContent="center"
-      alignItems="center"
+      display="block"
+      gap="unset"
+      alignItems="unset"
+      justifyContent="unset"
       overflow="hidden"
       position="relative"
-      padding="160px 240px 160px 240px"
+      padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "Title")}
       {...rest}
     >
       <Flex
-        gap="24px"
-        direction="column"
-        width="389px"
-        height="559px"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Type Lock Up")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="700"
-          color="rgba(35,47,62,1)"
-          lineHeight="24px"
-          textAlign="center"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="227px"
-          height="24px"
-          gap="unset"
-          alignItems="unset"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Sonia Patel"
-          {...getOverrideProps(overrides, "Sonia Patel")}
-        ></Text>
-        <Flex
-          gap="16px"
-          direction="column"
-          width="391px"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Body Area")}
-        >
-          <Text
-            fontFamily="Inter"
-            fontSize="24px"
-            fontWeight="600"
-            color="rgba(35,47,62,1)"
-            lineHeight="30px"
-            textAlign="center"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="Corneal Applanation Suturing Model"
-            {...getOverrideProps(
-              overrides,
-              "Corneal Applanation Suturing Model"
-            )}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="16px"
-            fontWeight="400"
-            color="rgba(35,47,62,1)"
-            lineHeight="24px"
-            textAlign="center"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            letterSpacing="0.01px"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="Patent Pending"
-            {...getOverrideProps(overrides, "Patent Pending")}
-          ></Text>
-        </Flex>
-      </Flex>
-    </Flex>
+        width="157px"
+        height="34px"
+        {...getOverrideProps(overrides, "Heading4168273")}
+      ></Flex>
+      <Heading
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="240px"
+        left="69px"
+        level="1"
+        children="Sonia Patel"
+        {...getOverrideProps(overrides, "Heading4168311")}
+      ></Heading>
+      <Heading
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="342px"
+        left="35px"
+        level="3"
+        children="Corneal Applanation &#xA;Suturing Model"
+        {...getOverrideProps(overrides, "Heading4168313")}
+      ></Heading>
+      <Heading
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="464px"
+        left="116px"
+        level="5"
+        children="Patent Pending"
+        {...getOverrideProps(overrides, "Heading4168316")}
+      ></Heading>
+    </View>
   );
 }

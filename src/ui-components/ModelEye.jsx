@@ -23,9 +23,12 @@ export default function ModelEye(props) {
       },
     });
   };
+  const buttonFourOneSixFourTwoOneOneTwoOnMouseLeave = useNavigateAction({
+    type: "reload",
+  });
   const buttonFourOneSixFourTwoOneSevenTwoOnClick = useNavigateAction({
     type: "url",
-    url: "\\update",
+    url: `${"/edit/"}${SurveyResult?.id}`,
   });
   return (
     <Flex
@@ -78,6 +81,9 @@ export default function ModelEye(props) {
             children="Delete"
             onClick={() => {
               buttonFourOneSixFourTwoOneOneTwoOnClick();
+            }}
+            onMouseLeave={() => {
+              buttonFourOneSixFourTwoOneOneTwoOnMouseLeave();
             }}
             {...getOverrideProps(overrides, "Button41642112")}
           ></Button>
@@ -151,7 +157,7 @@ export default function ModelEye(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={SurveyResult?.id}
+            children={SurveyResult?.res}
             {...getOverrideProps(overrides, "$99 USD41642176")}
           ></Text>
           <Text
