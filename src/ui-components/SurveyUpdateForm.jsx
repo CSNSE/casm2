@@ -12,9 +12,9 @@ import { generateClient } from "aws-amplify/api";
 import { getSurvey } from "../graphql/queries";
 import { updateSurvey } from "../graphql/mutations";
 const client = generateClient();
-export default function EditF(props) {
+export default function SurveyUpdateForm(props) {
   const {
-    idProp,
+    id: idProp,
     survey: surveyModelProp,
     onSuccess,
     onError,
