@@ -7,13 +7,20 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import {
+  fetchByPath,
+  getOverrideProps,
+  processFile,
+  validateField,
+} from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createTodo } from "../graphql/mutations";
+import { Field } from "@aws-amplify/ui-react/internal";
 const client = generateClient();
 export default function TodoCreateForm(props) {
   const {
-    clearOnSuccess = true,
+    clearOnSuccess = false,
     onSuccess,
     onError,
     onSubmit,
@@ -25,7 +32,7 @@ export default function TodoCreateForm(props) {
   const initialValues = {
     name: "",
     description: "",
-    image: "",
+    image: undefined,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
@@ -178,45 +185,57 @@ export default function TodoCreateForm(props) {
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
       ></TextField>
-      <TextField
-        label="Image"
-        isRequired={false}
-        isReadOnly={false}
-        value={image}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              image: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.image ?? value;
-          }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
-          }
-          setImage(value);
-        }}
-        onBlur={() => runValidationTasks("image", image)}
+      <Field
         errorMessage={errors.image?.errorMessage}
         hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
-      ></TextField>
+        label={"Image"}
+        isRequired={false}
+        isReadOnly={false}
+      >
+        <StorageManager
+          onUploadSuccess={({ key }) => {
+            setImage((prev) => {
+              let value = key;
+              if (onChange) {
+                const modelFields = {
+                  name,
+                  description,
+                  image: value,
+                };
+                const result = onChange(modelFields);
+                value = result?.image ?? value;
+              }
+              return value;
+            });
+          }}
+          onFileRemove={({ key }) => {
+            setImage((prev) => {
+              let value = initialValues?.image;
+              if (onChange) {
+                const modelFields = {
+                  name,
+                  description,
+                  image: value,
+                };
+                const result = onChange(modelFields);
+                value = result?.image ?? value;
+              }
+              return value;
+            });
+          }}
+          processFile={processFile}
+          accessLevel={"private"}
+          acceptedFileTypes={[]}
+          isResumable={false}
+          showThumbnails={true}
+          maxFileCount={1}
+          {...getOverrideProps(overrides, "image")}
+        ></StorageManager>
+      </Field>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
-        <Button
-          children="Clear"
-          type="reset"
-          onClick={(event) => {
-            event.preventDefault();
-            resetStateValues();
-          }}
-          {...getOverrideProps(overrides, "ClearButton")}
-        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
