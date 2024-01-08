@@ -20,7 +20,7 @@ import { Field } from "@aws-amplify/ui-react/internal";
 const client = generateClient();
 export default function TodoCreateForm(props) {
   const {
-    clearOnSuccess = false,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,

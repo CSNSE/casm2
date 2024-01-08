@@ -7,6 +7,8 @@
 export { default as ConsentForm } from "./ConsentForm";
 export { default as Home } from "./Home";
 export { default as ModelEye } from "./ModelEye";
+export { default as ModelVid } from "./ModelVid";
+export { default as ModelVidCollection } from "./ModelVidCollection";
 export { default as Models } from "./Models";
 export { default as Nav } from "./Nav";
 export { default as Nav2 } from "./Nav2";
