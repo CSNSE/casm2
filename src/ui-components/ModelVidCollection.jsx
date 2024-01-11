@@ -11,7 +11,7 @@ import ModelVid from "./ModelVid";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
-import { getUrl } from "@aws-amplify/storage"; //MAH add!
+import { getUrl } from "@aws-amplify/storage"; //MAH add! asdf
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
