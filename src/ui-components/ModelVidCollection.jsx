@@ -11,7 +11,6 @@ import ModelVid from "./ModelVid";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
-import { getUrl } from "@aws-amplify/storage"; //MAH add! asdf
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
@@ -62,18 +61,6 @@ export default function ModelVidCollection(props) {
       ).data.listTodos;
       newCache.push(...result.items);
       newNext = result.nextToken;
-      const ModelVidFromAPI = result.items
-      await Promise.all(
-        ModelVidFromAPI.map(async (ModelVid) => {
-          if (ModelVid.image) {
-            const getUrlResult = await getUrl({
-              key: ModelVid.image,
-            });
-            ModelVid.image=getUrlResult.url;
-          }
-          return ModelVid;
-          })
-        );
     }
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)

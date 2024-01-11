@@ -12,7 +12,7 @@ class App extends Component {
 <Routes>
 <Route exact path='/' element={<div><Nav/><Title/></div>} />
 <Route exact path='/consent' element= {<div><Nav/><ConsentForm/></div>} />
-<Route exact path='/survey' element= {<div><Nav/><SurveyModelEyeCollection/></div>} />
+<Route exact path='/survey' element= {<div><Nav/><Survey/></div>} />
 <Route exact path='/ty' element= {<Ty/>} />
 <Route exact path='/model' element= {<div><Nav/><SurveyModelEyeCollection isPaginated itemsPerPage={1}/><Ty/></div>} />
 <Route exact path='/edit/:cid' element= {<EditF/>} />
