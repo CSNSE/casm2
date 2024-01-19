@@ -5,7 +5,6 @@ import {Nav, ConsentForm,Survey,Ty, Title,SurveyModelEyeCollection, ModelVidColl
 import {Routes, Route} from 'react-router-dom'
 import EditF from './EditF'
 class App extends Component {
-
   render() {
   return (
     <div className="App"><header className="App-header">
@@ -14,10 +13,9 @@ class App extends Component {
 <Route exact path='/consent' element= {<div><Nav/><ConsentForm/></div>} />
 <Route exact path='/survey' element= {<div><Nav/><Survey/></div>} />
 <Route exact path='/ty' element= {<Ty/>} />
-<Route exact path='/model' element= {<div><Nav/><SurveyModelEyeCollection isPaginated itemsPerPage={1}/><Ty/></div>} />
+<Route exact path='/model' element= {<div><Nav/><SurveyModelEyeCollection isPaginated itemsPerPage={1}/><ModelVidCollection isPaginated itemsPerPage={1}/><Ty/></div>} />
 <Route exact path='/edit/:cid' element= {<EditF/>} />
 <Route exact path='/video' element= {<div><Nav/><TodoCreateForm/></div>} />
-<Route exact path='/modv' element= {<div><Nav/><ModelVidCollection/></div>} />
 <Route exact path='/home' element= {<div><Nav/><Title/></div>} 
 />
 </Routes>
