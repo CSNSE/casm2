@@ -24,6 +24,8 @@ export declare type ModelsOverridesProps = {
     image40462628?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type ModelsProps = React.PropsWithChildren<Partial<ViewProps> & {
+    todo?: any;
+} & {
     overrides?: ModelsOverridesProps | undefined | null;
 }>;
 export default function Models(props: ModelsProps): React.ReactElement;
