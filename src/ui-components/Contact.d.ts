@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, HeadingProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,20 +17,15 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type NavOverridesProps = {
-    Nav?: PrimitiveOverrideProps<FlexProps>;
-    Home?: PrimitiveOverrideProps<TextProps>;
-    "Frame 33"?: PrimitiveOverrideProps<ViewProps>;
-    "\u270E"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 35"?: PrimitiveOverrideProps<ViewProps>;
-    "\uD83D\uDCDE"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 34"?: PrimitiveOverrideProps<ViewProps>;
-    Image?: PrimitiveOverrideProps<TextProps>;
-    "Survey & Image Model"?: PrimitiveOverrideProps<TextProps>;
+export declare type ContactOverridesProps = {
+    Contact?: PrimitiveOverrideProps<FlexProps>;
+    Heading?: PrimitiveOverrideProps<HeadingProps>;
+    TextField42031736?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField42031737?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField42031738?: PrimitiveOverrideProps<TextFieldProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type NavProps = React.PropsWithChildren<Partial<FlexProps> & {
-    survey?: any;
-} & {
-    overrides?: NavOverridesProps | undefined | null;
+export declare type ContactProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: ContactOverridesProps | undefined | null;
 }>;
-export default function Nav(props: NavProps): React.ReactElement;
+export default function Contact(props: ContactProps): React.ReactElement;

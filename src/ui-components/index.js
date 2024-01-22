@@ -5,6 +5,9 @@
  **************************************************************************/
 
 export { default as ConsentForm } from "./ConsentForm";
+export { default as Contact } from "./Contact";
+export { default as ContactCreateForm } from "./ContactCreateForm";
+export { default as ContactUpdateForm } from "./ContactUpdateForm";
 export { default as Home } from "./Home";
 export { default as ModelEye } from "./ModelEye";
 export { default as ModelVid } from "./ModelVid";
@@ -20,6 +23,7 @@ export { default as Title } from "./Title";
 export { default as TodoCreateForm } from "./TodoCreateForm";
 export { default as TodoUpdateForm } from "./TodoUpdateForm";
 export { default as Ty } from "./Ty";
+export { default as TyM } from "./TyM";
 export { default as Update } from "./Update";
 export { default as Video } from "./Video";
 export { default as studioTheme } from "./studioTheme";

@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "./utils";
 import { Flex, Image, View } from "@aws-amplify/ui-react";
 export default function Models(props) {
-  const { overrides, ...rest } = props;
+  const { todo, overrides, ...rest } = props;
   return (
     <View
       width="390px"
@@ -56,6 +56,7 @@ export default function Models(props) {
         left="54px"
         padding="0px 0px 0px 0px"
         objectFit="unset"
+        src={todo?.image}
         {...getOverrideProps(overrides, "image40462628")}
       ></Image>
     </View>
