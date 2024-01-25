@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps, HeadingProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { MContactProps } from "./MContact";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,17 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ContactOverridesProps = {
-    Contact?: PrimitiveOverrideProps<FlexProps>;
-    Heading?: PrimitiveOverrideProps<HeadingProps>;
-    TextField42031736?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42031737?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42031738?: PrimitiveOverrideProps<TextFieldProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+export declare type MContactCollectionOverridesProps = {
+    MContactCollection?: PrimitiveOverrideProps<CollectionProps>;
+    MContact?: MContactProps;
 } & EscapeHatchProps;
-export declare type ContactProps = React.PropsWithChildren<Partial<FlexProps> & {
-    Contact?: String;
+export declare type MContactCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => MContactProps;
 } & {
-    overrides?: ContactOverridesProps | undefined | null;
+    overrides?: MContactCollectionOverridesProps | undefined | null;
 }>;
-export default function Contact(props: ContactProps): React.ReactElement;
+export default function MContactCollection(props: MContactCollectionProps): React.ReactElement;

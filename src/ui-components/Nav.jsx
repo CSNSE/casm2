@@ -12,7 +12,7 @@ export default function Nav(props) {
   const { survey, overrides, ...rest } = props;
   const homeOnClick = useNavigateAction({ type: "url", url: "/home" });
   const OnClick = useNavigateAction({ type: "url", url: "/consent" });
-  const OnClick = useNavigateAction({ type: "url", url: "/contact" });
+  const cOnClick = useNavigateAction({ type: "url", url: "/contact" });
   const imageOnClick = useNavigateAction({ type: "url", url: "/video" });
   const surveyAmpersandImageModelOnClick = useNavigateAction({
     type: "url",
@@ -130,7 +130,7 @@ export default function Nav(props) {
           whiteSpace="pre-wrap"
           children="📞"
           onClick={() => {
-            OnClick();
+            cOnClick();
           }}
           {...getOverrideProps(overrides, "\uD83D\uDCDE")}
         ></Text>

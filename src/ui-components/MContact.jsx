@@ -6,11 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
-import { Button, Flex, Heading, TextField } from "@aws-amplify/ui-react";
-export default function Contact(props) {
-  const { Contact, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/contactm" });
+import { getOverrideProps } from "./utils";
+import { Flex, TextField } from "@aws-amplify/ui-react";
+export default function MContact(props) {
+  const { contact, overrides, ...rest } = props;
   return (
     <Flex
       gap="15px"
@@ -23,69 +22,45 @@ export default function Contact(props) {
       position="relative"
       padding="59px 32px 59px 32px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Contact")}
+      {...getOverrideProps(overrides, "MContact")}
       {...rest}
     >
-      <Heading
-        width="unset"
-        height="unset"
-        shrink="0"
-        level="1"
-        children="Contact Me"
-        {...getOverrideProps(overrides, "Heading")}
-      ></Heading>
       <TextField
         width="325px"
         height="unset"
         label="Name:"
-        placeholder="John Doe"
+        placeholder={contact?.name}
         shrink="0"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField42031736")}
+        {...getOverrideProps(overrides, "TextField42271598")}
       ></TextField>
       <TextField
         width="325px"
         height="88px"
         label="Email:"
-        placeholder="johndoe@gmail.com"
+        placeholder={contact?.email}
         shrink="0"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField42031737")}
+        {...getOverrideProps(overrides, "TextField42271599")}
       ></TextField>
       <TextField
         width="325px"
         height="84px"
         label="Message:"
-        placeholder="Begin message here"
+        placeholder={contact?.message}
         shrink="0"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField42031738")}
+        {...getOverrideProps(overrides, "TextField42271600")}
       ></TextField>
-      <Button
-        width="189px"
-        height="39px"
-        border="1px SOLID rgba(4,125,149,1)"
-        borderRadius="4.5px"
-        padding="7.5px 15.5px 7.5px 15.5px"
-        shrink="0"
-        size="default"
-        isDisabled={false}
-        variation="default"
-        children="Submit Message"
-        onClick={() => {
-          buttonOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
     </Flex>
   );
 }
