@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Flex, Heading, View } from "@aws-amplify/ui-react";
+import { Flex, Heading, Text, View } from "@aws-amplify/ui-react";
 export default function Title(props) {
   const { overrides, ...rest } = props;
   return (
@@ -28,7 +28,7 @@ export default function Title(props) {
       <Flex
         width="157px"
         height="34px"
-        {...getOverrideProps(overrides, "Heading4168273")}
+        {...getOverrideProps(overrides, "Heading4244350")}
       ></Flex>
       <Heading
         width="unset"
@@ -38,17 +38,7 @@ export default function Title(props) {
         left="69px"
         level="1"
         children="Sonia Patel"
-        {...getOverrideProps(overrides, "Heading4168311")}
-      ></Heading>
-      <Heading
-        width="unset"
-        height="unset"
-        position="absolute"
-        top="342px"
-        left="35px"
-        level="3"
-        children="Corneal Applanation &#xA;Suturing Model"
-        {...getOverrideProps(overrides, "Heading4168313")}
+        {...getOverrideProps(overrides, "Heading4244351")}
       ></Heading>
       <Heading
         width="unset"
@@ -58,8 +48,33 @@ export default function Title(props) {
         left="116px"
         level="5"
         children="Patent Pending"
-        {...getOverrideProps(overrides, "Heading4168316")}
+        {...getOverrideProps(overrides, "Heading4244352")}
       ></Heading>
+      <Text
+        fontFamily="Inter"
+        fontSize="32px"
+        fontWeight="500"
+        color="rgba(0,0,0,1)"
+        lineHeight="40px"
+        textAlign="center"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="unset"
+        height="unset"
+        gap="unset"
+        alignItems="unset"
+        position="absolute"
+        top="310px"
+        left="33px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children="Corneal Applanation &#xA;Suturing Model&#xA;(C.A.S.M)"
+        {...getOverrideProps(
+          overrides,
+          "Corneal Applanation Suturing Model (C.A.S.M)"
+        )}
+      ></Text>
     </View>
   );
 }

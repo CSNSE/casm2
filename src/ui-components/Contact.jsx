@@ -6,11 +6,42 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { createContact } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex, Heading, TextField } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function Contact(props) {
   const { Contact, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/contactm" });
+  const [
+    textFieldFourTwoZeroThreeOneSevenThreeSixValue,
+    setTextFieldFourTwoZeroThreeOneSevenThreeSixValue,
+  ] = useState("");
+  const [
+    textFieldFourTwoZeroThreeOneSevenThreeSevenValue,
+    setTextFieldFourTwoZeroThreeOneSevenThreeSevenValue,
+  ] = useState("");
+  const [
+    textFieldFourTwoZeroThreeOneSevenThreeEightValue,
+    setTextFieldFourTwoZeroThreeOneSevenThreeEightValue,
+  ] = useState("");
+  const buttonOnClick = async () => {
+    await client.graphql({
+      query: createContact.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldFourTwoZeroThreeOneSevenThreeSixValue,
+          email: textFieldFourTwoZeroThreeOneSevenThreeSevenValue,
+          message: textFieldFourTwoZeroThreeOneSevenThreeEightValue,
+        },
+      },
+    });
+  };
+  const buttonOnMouseLeave = useNavigateAction({
+    type: "url",
+    url: "/contactm",
+  });
   return (
     <Flex
       gap="15px"
@@ -44,6 +75,10 @@ export default function Contact(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldFourTwoZeroThreeOneSevenThreeSixValue}
+        onChange={(event) => {
+          setTextFieldFourTwoZeroThreeOneSevenThreeSixValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField42031736")}
       ></TextField>
       <TextField
@@ -56,6 +91,12 @@ export default function Contact(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldFourTwoZeroThreeOneSevenThreeSevenValue}
+        onChange={(event) => {
+          setTextFieldFourTwoZeroThreeOneSevenThreeSevenValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField42031737")}
       ></TextField>
       <TextField
@@ -68,6 +109,12 @@ export default function Contact(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldFourTwoZeroThreeOneSevenThreeEightValue}
+        onChange={(event) => {
+          setTextFieldFourTwoZeroThreeOneSevenThreeEightValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField42031738")}
       ></TextField>
       <Button
@@ -83,6 +130,9 @@ export default function Contact(props) {
         children="Submit Message"
         onClick={() => {
           buttonOnClick();
+        }}
+        onMouseLeave={() => {
+          buttonOnMouseLeave();
         }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
