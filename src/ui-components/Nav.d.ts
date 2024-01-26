@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -19,14 +19,11 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NavOverridesProps = {
     Nav?: PrimitiveOverrideProps<FlexProps>;
-    Home?: PrimitiveOverrideProps<TextProps>;
-    "Frame 33"?: PrimitiveOverrideProps<ViewProps>;
-    "\u270E"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 35"?: PrimitiveOverrideProps<ViewProps>;
-    "\uD83D\uDCDE"?: PrimitiveOverrideProps<TextProps>;
-    "Frame 34"?: PrimitiveOverrideProps<ViewProps>;
-    Image?: PrimitiveOverrideProps<TextProps>;
-    "Survey & Image Model"?: PrimitiveOverrideProps<TextProps>;
+    Button4250412?: PrimitiveOverrideProps<ButtonProps>;
+    Button4250416?: PrimitiveOverrideProps<ButtonProps>;
+    Button4250420?: PrimitiveOverrideProps<ButtonProps>;
+    Button4251428?: PrimitiveOverrideProps<ButtonProps>;
+    Button4250424?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type NavProps = React.PropsWithChildren<Partial<FlexProps> & {
     survey?: any;

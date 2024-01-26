@@ -7,16 +7,28 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import { Flex, Text, View } from "@aws-amplify/ui-react";
+import { Button, Flex } from "@aws-amplify/ui-react";
 export default function Nav(props) {
   const { survey, overrides, ...rest } = props;
-  const homeOnClick = useNavigateAction({ type: "url", url: "/home" });
-  const OnClick = useNavigateAction({ type: "url", url: "/consent" });
-  const cOnClick = useNavigateAction({ type: "url", url: "/contact" });
-  const imageOnClick = useNavigateAction({ type: "url", url: "/video" });
-  const surveyAmpersandImageModelOnClick = useNavigateAction({
+  const buttonFourTwoFiveZeroFourOneTwoOnClick = useNavigateAction({
+    type: "url",
+    url: "/home",
+  });
+  const buttonFourTwoFiveZeroFourOneSixOnClick = useNavigateAction({
+    type: "url",
+    url: "/video",
+  });
+  const buttonFourTwoFiveZeroFourTwoZeroOnClick = useNavigateAction({
+    type: "url",
+    url: "\\contact",
+  });
+  const buttonFourTwoFiveOneFourTwoEightOnClick = useNavigateAction({
     type: "url",
     url: "/model",
+  });
+  const buttonFourTwoFiveZeroFourTwoFourOnClick = useNavigateAction({
+    type: "url",
+    url: "/consent",
   });
   return (
     <Flex
@@ -32,173 +44,82 @@ export default function Nav(props) {
       {...getOverrideProps(overrides, "Nav")}
       {...rest}
     >
-      <Text
-        fontFamily="Inter"
-        fontSize="16px"
-        fontWeight="400"
-        color="rgba(0,0,0,1)"
-        lineHeight="24px"
-        textAlign="left"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        letterSpacing="0.01px"
-        width="47px"
+      <Button
+        width="34px"
         height="unset"
-        gap="unset"
-        alignItems="unset"
+        borderRadius="4px"
+        padding="7px 15px 7px 15px"
         shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Home"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="🏠"
         onClick={() => {
-          homeOnClick();
+          buttonFourTwoFiveZeroFourOneTwoOnClick();
         }}
-        {...getOverrideProps(overrides, "Home")}
-      ></Text>
-      <View
-        width="16px"
-        height="23px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
+        {...getOverrideProps(overrides, "Button4250412")}
+      ></Button>
+      <Button
+        width="34px"
+        height="unset"
+        borderRadius="4px"
+        padding="7px 15px 7px 15px"
         shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 33")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          letterSpacing="0.01px"
-          width="16px"
-          height="23px"
-          gap="unset"
-          alignItems="unset"
-          position="absolute"
-          top="0px"
-          left="0px"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="✎"
-          onClick={() => {
-            OnClick();
-          }}
-          {...getOverrideProps(overrides, "\u270E")}
-        ></Text>
-      </View>
-      <View
-        width="16px"
-        height="23px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 35")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          letterSpacing="0.01px"
-          width="16px"
-          height="23px"
-          gap="unset"
-          alignItems="unset"
-          position="absolute"
-          top="0px"
-          left="0px"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="📞"
-          onClick={() => {
-            cOnClick();
-          }}
-          {...getOverrideProps(overrides, "\uD83D\uDCDE")}
-        ></Text>
-      </View>
-      <View
-        width="16px"
-        height="23px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 34")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          letterSpacing="0.01px"
-          width="47px"
-          height="23px"
-          gap="unset"
-          alignItems="unset"
-          position="absolute"
-          top="0.5px"
-          left="-0.33px"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Image"
-          onClick={() => {
-            imageOnClick();
-          }}
-          {...getOverrideProps(overrides, "Image")}
-        ></Text>
-      </View>
-      <Text
-        fontFamily="Inter"
-        fontSize="16px"
-        fontWeight="400"
-        color="rgba(0,0,0,1)"
-        lineHeight="24px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        letterSpacing="0.01px"
-        width="83px"
-        height="62px"
-        gap="unset"
-        alignItems="unset"
-        shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Survey & Image Model"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="📸"
         onClick={() => {
-          surveyAmpersandImageModelOnClick();
+          buttonFourTwoFiveZeroFourOneSixOnClick();
         }}
-        {...getOverrideProps(overrides, "Survey & Image Model")}
-      ></Text>
+        {...getOverrideProps(overrides, "Button4250416")}
+      ></Button>
+      <Button
+        width="36px"
+        height="unset"
+        shrink="0"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="📞"
+        onClick={() => {
+          buttonFourTwoFiveZeroFourTwoZeroOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button4250420")}
+      ></Button>
+      <Button
+        width="34px"
+        height="unset"
+        borderRadius="4px"
+        padding="7px 15px 7px 15px"
+        shrink="0"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="📑"
+        onClick={() => {
+          buttonFourTwoFiveOneFourTwoEightOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button4251428")}
+      ></Button>
+      <Button
+        width="36px"
+        height="unset"
+        shrink="0"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="✍🏼"
+        onClick={() => {
+          buttonFourTwoFiveZeroFourTwoFourOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button4250424")}
+      ></Button>
     </Flex>
   );
 }
