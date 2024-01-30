@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {Nav, ConsentForm,Survey,Ty, Contact, Images, Hcontact, Title,SurveyModelEyeCollection, ModelVidCollection, TodoCreateForm, MContactCollection} from "./ui-components";
+import {Nav, ConsentForm,Survey,Ty, Contact, Hcontact, Title,SurveyModelEyeCollection, ModelVidCollection, TodoCreateForm, MContactCollection, TodoUpdateForm} from "./ui-components";
 import {Routes, Route} from 'react-router-dom'
 import EditF from './EditF'
 class App extends Component {
@@ -17,6 +17,7 @@ class App extends Component {
 <Route exact path='/edit/:cid' element= {<EditF/>} />
 <Route exact path='/video' element= {<div><Nav/><TodoCreateForm/></div>} />
 <Route exact path='/contactm' element= {<div><Nav/><Hcontact/><MContactCollection/></div>} />
+<Route exact path='/updatem' element= {<div><Nav/><TodoUpdateForm/></div>} />
 <Route exact path='/contact' element= {<div><Nav/><Contact/></div>} />
 <Route exact path='/home' element= {<div><Nav/><Title/></div>} 
 />
