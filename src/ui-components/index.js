@@ -10,6 +10,7 @@ export { default as ContactCreateForm } from "./ContactCreateForm";
 export { default as ContactUpdateForm } from "./ContactUpdateForm";
 export { default as Hcontact } from "./Hcontact";
 export { default as Home } from "./Home";
+export { default as Images } from "./Images";
 export { default as MContact } from "./MContact";
 export { default as MContactCollection } from "./MContactCollection";
 export { default as ModelEye } from "./ModelEye";

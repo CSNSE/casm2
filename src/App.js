@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {Nav, ConsentForm,Survey,Ty, Contact, Hcontact, Title,SurveyModelEyeCollection, ModelVidCollection, TodoCreateForm, MContactCollection} from "./ui-components";
+import {Nav, ConsentForm,Survey,Ty, Contact, Images, Hcontact, Title,SurveyModelEyeCollection, ModelVidCollection, TodoCreateForm, MContactCollection} from "./ui-components";
 import {Routes, Route} from 'react-router-dom'
 import EditF from './EditF'
 class App extends Component {
