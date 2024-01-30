@@ -8,7 +8,7 @@
 import * as React from "react";
 import { generateClient } from "aws-amplify/api";
 import { deleteTodo } from "../graphql/mutations";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex, Image, Text, View } from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function ModelVid(props) {
@@ -23,6 +23,13 @@ export default function ModelVid(props) {
       },
     });
   };
+  const buttonFourOneEightNineOneFiveSixZeroOnMouseLeave = useNavigateAction({
+    type: "reload",
+  });
+  const buttonFourOneEightNineOneFiveSixOneOnClick = useNavigateAction({
+    type: "url",
+    url: "/updatem",
+  });
   return (
     <Flex
       gap="0"
@@ -75,6 +82,9 @@ export default function ModelVid(props) {
             onClick={() => {
               buttonFourOneEightNineOneFiveSixZeroOnClick();
             }}
+            onMouseLeave={() => {
+              buttonFourOneEightNineOneFiveSixZeroOnMouseLeave();
+            }}
             {...getOverrideProps(overrides, "Button41891560")}
           ></Button>
           <Button
@@ -87,6 +97,9 @@ export default function ModelVid(props) {
             isDisabled={false}
             variation="primary"
             children="Edit"
+            onClick={() => {
+              buttonFourOneEightNineOneFiveSixOneOnClick();
+            }}
             {...getOverrideProps(overrides, "Button41891561")}
           ></Button>
         </View>
