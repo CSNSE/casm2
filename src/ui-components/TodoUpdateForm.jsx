@@ -171,6 +171,7 @@ export default function TodoUpdateForm(props) {
         errorMessage={errors.name?.errorMessage}
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
+        
       ></TextField>
       <TextField
         label="Description"
@@ -243,14 +244,18 @@ export default function TodoUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-             children="Submit"
-             type="submit"
-             variation="primary"
-             isDisabled={Object.values(errors).some((e) => e?.hasError)}
-             {...getOverrideProps(overrides, "SubmitButton")}
+          children="Submit"
+          type="submit"
+          variation="primary"
+          isDisabled={
+            !(idProp || todoModelProp) ||
+            Object.values(errors).some((e) => e?.hasError)
+          }
+          {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>
       </Flex>
     </Grid>
   );
 }
+
