@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps } from "@aws-amplify/ui-react";
+import { FlexProps, HeadingProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,18 +17,11 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type NavOverridesProps = {
-    Nav?: PrimitiveOverrideProps<FlexProps>;
-    Button4293504?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293505?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293506?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293507?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293508?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293524?: PrimitiveOverrideProps<ButtonProps>;
+export declare type HprofileOverridesProps = {
+    Hprofile?: PrimitiveOverrideProps<FlexProps>;
+    Heading?: PrimitiveOverrideProps<HeadingProps>;
 } & EscapeHatchProps;
-export declare type NavProps = React.PropsWithChildren<Partial<FlexProps> & {
-    survey?: any;
-} & {
-    overrides?: NavOverridesProps | undefined | null;
+export declare type HprofileProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: HprofileOverridesProps | undefined | null;
 }>;
-export default function Nav(props: NavProps): React.ReactElement;
+export default function Hprofile(props: HprofileProps): React.ReactElement;

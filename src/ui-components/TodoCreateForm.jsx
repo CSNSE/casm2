@@ -71,10 +71,10 @@ export default function TodoCreateForm(props) {
   return (
     <Grid
       as="form"
-      backgroundColor="rgba(255,255,255,1)"
       rowGap="15px"
       columnGap="15px"
       padding="20px"
+      backgroundColor="rgba(255,255,255,1)"
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
@@ -253,4 +253,3 @@ export default function TodoCreateForm(props) {
     </Grid>
   );
 }
-

@@ -10,25 +10,29 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex } from "@aws-amplify/ui-react";
 export default function Nav(props) {
   const { survey, overrides, ...rest } = props;
-  const buttonFourTwoFiveZeroFourOneTwoOnClick = useNavigateAction({
+  const buttonFourTwoNineThreeFiveZeroFourOnClick = useNavigateAction({
     type: "url",
     url: "/home",
   });
-  const buttonFourTwoFiveZeroFourOneSixOnClick = useNavigateAction({
+  const buttonFourTwoNineThreeFiveZeroFiveOnClick = useNavigateAction({
     type: "url",
     url: "/video",
   });
-  const buttonFourTwoFiveZeroFourTwoZeroOnClick = useNavigateAction({
+  const buttonFourTwoNineThreeFiveZeroSixOnClick = useNavigateAction({
     type: "url",
-    url: "\\contact",
+    url: "/contact",
   });
-  const buttonFourTwoFiveOneFourTwoEightOnClick = useNavigateAction({
+  const buttonFourTwoNineThreeFiveZeroSevenOnClick = useNavigateAction({
     type: "url",
     url: "/model",
   });
-  const buttonFourTwoFiveZeroFourTwoFourOnClick = useNavigateAction({
+  const buttonFourTwoNineThreeFiveZeroEightOnClick = useNavigateAction({
     type: "url",
     url: "/consent",
+  });
+  const buttonFourTwoNineThreeFiveTwoFourOnClick = useNavigateAction({
+    type: "url",
+    url: "/about",
   });
   return (
     <Flex
@@ -56,9 +60,9 @@ export default function Nav(props) {
         variation="default"
         children="🏠"
         onClick={() => {
-          buttonFourTwoFiveZeroFourOneTwoOnClick();
+          buttonFourTwoNineThreeFiveZeroFourOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4250412")}
+        {...getOverrideProps(overrides, "Button4293504")}
       ></Button>
       <Button
         width="34px"
@@ -72,9 +76,9 @@ export default function Nav(props) {
         variation="default"
         children="📸"
         onClick={() => {
-          buttonFourTwoFiveZeroFourOneSixOnClick();
+          buttonFourTwoNineThreeFiveZeroFiveOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4250416")}
+        {...getOverrideProps(overrides, "Button4293505")}
       ></Button>
       <Button
         width="36px"
@@ -86,9 +90,9 @@ export default function Nav(props) {
         variation="default"
         children="📞"
         onClick={() => {
-          buttonFourTwoFiveZeroFourTwoZeroOnClick();
+          buttonFourTwoNineThreeFiveZeroSixOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4250420")}
+        {...getOverrideProps(overrides, "Button4293506")}
       ></Button>
       <Button
         width="34px"
@@ -102,9 +106,9 @@ export default function Nav(props) {
         variation="default"
         children="📑"
         onClick={() => {
-          buttonFourTwoFiveOneFourTwoEightOnClick();
+          buttonFourTwoNineThreeFiveZeroSevenOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4251428")}
+        {...getOverrideProps(overrides, "Button4293507")}
       ></Button>
       <Button
         width="36px"
@@ -116,9 +120,23 @@ export default function Nav(props) {
         variation="default"
         children="✍🏼"
         onClick={() => {
-          buttonFourTwoFiveZeroFourTwoFourOnClick();
+          buttonFourTwoNineThreeFiveZeroEightOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4250424")}
+        {...getOverrideProps(overrides, "Button4293508")}
+      ></Button>
+      <Button
+        width="36px"
+        height="unset"
+        shrink="0"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="👤"
+        onClick={() => {
+          buttonFourTwoNineThreeFiveTwoFourOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button4293524")}
       ></Button>
     </Flex>
   );

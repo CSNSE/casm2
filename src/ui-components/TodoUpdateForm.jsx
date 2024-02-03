@@ -85,7 +85,6 @@ export default function TodoUpdateForm(props) {
   return (
     <Grid
       as="form"
-      backgroundColor="rgba(255,255,255,1)"
       rowGap="15px"
       columnGap="15px"
       padding="20px"
@@ -171,11 +170,10 @@ export default function TodoUpdateForm(props) {
         errorMessage={errors.name?.errorMessage}
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
-        
       ></TextField>
       <TextField
         label="Description"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={description}
         onChange={(e) => {
@@ -236,7 +234,7 @@ export default function TodoUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={Object.values(errors).some((e) => e?.hasError)}
+          isDisabled={!(idProp || todoModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -244,18 +242,17 @@ export default function TodoUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-          children="Submit"
-          type="submit"
-          variation="primary"
-          isDisabled={
-            !(idProp || todoModelProp) ||
-            Object.values(errors).some((e) => e?.hasError)
-          }
-          {...getOverrideProps(overrides, "SubmitButton")}
+            children="Submit"
+            type="submit"
+            variation="primary"
+            isDisabled={
+              !(idProp || todoModelProp) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
+            {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>
       </Flex>
     </Grid>
   );
 }
-
