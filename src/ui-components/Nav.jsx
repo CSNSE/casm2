@@ -9,30 +9,34 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Flex } from "@aws-amplify/ui-react";
 export default function Nav(props) {
-  const { survey, overrides, ...rest } = props;
-  const buttonFourTwoNineThreeFiveZeroFourOnClick = useNavigateAction({
+  const { survey, url, overrides, ...rest } = props;
+  const buttonFourThreeOneSevenSevenFiveTwoOnClick = useNavigateAction({
     type: "url",
     url: "/home",
   });
-  const buttonFourTwoNineThreeFiveZeroFiveOnClick = useNavigateAction({
+  const buttonFourThreeOneSevenSevenFiveThreeOnClick = useNavigateAction({
     type: "url",
     url: "/video",
   });
-  const buttonFourTwoNineThreeFiveZeroSixOnClick = useNavigateAction({
+  const buttonFourThreeOneSevenSevenFiveFourOnClick = useNavigateAction({
     type: "url",
     url: "/contact",
   });
-  const buttonFourTwoNineThreeFiveZeroSevenOnClick = useNavigateAction({
+  const buttonFourThreeOneSevenSevenFiveFiveOnClick = useNavigateAction({
     type: "url",
     url: "/model",
   });
-  const buttonFourTwoNineThreeFiveZeroEightOnClick = useNavigateAction({
+  const buttonFourThreeOneSevenSevenFiveSixOnClick = useNavigateAction({
     type: "url",
     url: "/consent",
   });
-  const buttonFourTwoNineThreeFiveTwoFourOnClick = useNavigateAction({
+  const buttonFourThreeOneSevenSevenFiveSevenOnClick = useNavigateAction({
     type: "url",
     url: "/about",
+  });
+  const buttonFourThreeOneSevenSevenSevenSixOnClick = useNavigateAction({
+    type: "url",
+    url: "/profile",
   });
   return (
     <Flex
@@ -60,9 +64,9 @@ export default function Nav(props) {
         variation="default"
         children="🏠"
         onClick={() => {
-          buttonFourTwoNineThreeFiveZeroFourOnClick();
+          buttonFourThreeOneSevenSevenFiveTwoOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293504")}
+        {...getOverrideProps(overrides, "Button4317752")}
       ></Button>
       <Button
         width="34px"
@@ -76,9 +80,9 @@ export default function Nav(props) {
         variation="default"
         children="📸"
         onClick={() => {
-          buttonFourTwoNineThreeFiveZeroFiveOnClick();
+          buttonFourThreeOneSevenSevenFiveThreeOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293505")}
+        {...getOverrideProps(overrides, "Button4317753")}
       ></Button>
       <Button
         width="36px"
@@ -90,9 +94,9 @@ export default function Nav(props) {
         variation="default"
         children="📞"
         onClick={() => {
-          buttonFourTwoNineThreeFiveZeroSixOnClick();
+          buttonFourThreeOneSevenSevenFiveFourOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293506")}
+        {...getOverrideProps(overrides, "Button4317754")}
       ></Button>
       <Button
         width="34px"
@@ -106,9 +110,9 @@ export default function Nav(props) {
         variation="default"
         children="📑"
         onClick={() => {
-          buttonFourTwoNineThreeFiveZeroSevenOnClick();
+          buttonFourThreeOneSevenSevenFiveFiveOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293507")}
+        {...getOverrideProps(overrides, "Button4317755")}
       ></Button>
       <Button
         width="36px"
@@ -120,9 +124,9 @@ export default function Nav(props) {
         variation="default"
         children="✍🏼"
         onClick={() => {
-          buttonFourTwoNineThreeFiveZeroEightOnClick();
+          buttonFourThreeOneSevenSevenFiveSixOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293508")}
+        {...getOverrideProps(overrides, "Button4317756")}
       ></Button>
       <Button
         width="36px"
@@ -134,9 +138,23 @@ export default function Nav(props) {
         variation="default"
         children="👤"
         onClick={() => {
-          buttonFourTwoNineThreeFiveTwoFourOnClick();
+          buttonFourThreeOneSevenSevenFiveSevenOnClick();
         }}
-        {...getOverrideProps(overrides, "Button4293524")}
+        {...getOverrideProps(overrides, "Button4317757")}
+      ></Button>
+      <Button
+        width="36px"
+        height="unset"
+        shrink="0"
+        backgroundColor="rgba(224,228,233,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="👥"
+        onClick={() => {
+          buttonFourThreeOneSevenSevenSevenSixOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button4317776")}
       ></Button>
     </Flex>
   );

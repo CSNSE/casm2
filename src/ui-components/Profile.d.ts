@@ -22,9 +22,9 @@ export declare type ProfileOverridesProps = {
     Badge?: PrimitiveOverrideProps<FlexProps>;
     Heading?: PrimitiveOverrideProps<HeadingProps>;
     PhoneNumberField?: PrimitiveOverrideProps<PhoneNumberFieldProps>;
-    TextField4312623?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4318830?: PrimitiveOverrideProps<TextFieldProps>;
     TextAreaField?: PrimitiveOverrideProps<TextAreaFieldProps>;
-    TextField4312625?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4318832?: PrimitiveOverrideProps<TextFieldProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ProfileProps = React.PropsWithChildren<Partial<ViewProps> & {

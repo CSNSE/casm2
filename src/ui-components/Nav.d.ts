@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { ButtonProps, FlexProps } from "@aws-amplify/ui-react";
+import { SyntheticEvent } from "react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -19,15 +20,17 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NavOverridesProps = {
     Nav?: PrimitiveOverrideProps<FlexProps>;
-    Button4293504?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293505?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293506?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293507?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293508?: PrimitiveOverrideProps<ButtonProps>;
-    Button4293524?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317752?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317753?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317754?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317755?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317756?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317757?: PrimitiveOverrideProps<ButtonProps>;
+    Button4317776?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type NavProps = React.PropsWithChildren<Partial<FlexProps> & {
     survey?: any;
+    url?: (event: SyntheticEvent) => void;
 } & {
     overrides?: NavOverridesProps | undefined | null;
 }>;

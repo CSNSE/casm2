@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, ImageProps, RatingProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -23,6 +23,7 @@ export declare type ModelVidOverridesProps = {
     "Frame 34"?: PrimitiveOverrideProps<ViewProps>;
     Button41891560?: PrimitiveOverrideProps<ButtonProps>;
     Button41891561?: PrimitiveOverrideProps<ButtonProps>;
+    Rating?: PrimitiveOverrideProps<RatingProps>;
     "Text Group"?: PrimitiveOverrideProps<FlexProps>;
     Name?: PrimitiveOverrideProps<TextProps>;
     "$99 USD41891564"?: PrimitiveOverrideProps<TextProps>;

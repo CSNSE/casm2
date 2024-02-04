@@ -74,7 +74,6 @@ export default function TodoCreateForm(props) {
       rowGap="15px"
       columnGap="15px"
       padding="20px"
-      backgroundColor="rgba(255,255,255,1)"
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {

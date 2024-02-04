@@ -6,7 +6,8 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { useState } from "react";
+import { getOverrideProps } from "./utils";
 import {
   Button,
   Flex,
@@ -18,7 +19,10 @@ import {
 } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { contact, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/home" });
+  const [headingChildren, setHeadingChildren] = useState("Name");
+  const buttonOnClick = () => {
+    setHeadingChildren(contact?.name);
+  };
   return (
     <View
       width="390px"
@@ -37,13 +41,13 @@ export default function Profile(props) {
       <Flex
         gap="10px"
         direction="row"
-        width="128px"
-        height="113px"
+        width="364px"
+        height="87px"
         justifyContent="center"
         alignItems="center"
         position="absolute"
-        top="12px"
-        left="131px"
+        top="27px"
+        left="13px"
         borderRadius="32px"
         padding="8px 12px 8px 12px"
         backgroundColor="rgba(184,206,249,1)"
@@ -54,7 +58,7 @@ export default function Profile(props) {
           height="unset"
           shrink="0"
           level="1"
-          children={contact?.name}
+          children={headingChildren}
           {...getOverrideProps(overrides, "Heading")}
         ></Heading>
       </Flex>
@@ -76,7 +80,7 @@ export default function Profile(props) {
         width="300px"
         height="unset"
         label="Name:"
-        placeholder={contact?.name}
+        placeholder="John Doe"
         position="absolute"
         top="125px"
         left="45px"
@@ -84,7 +88,7 @@ export default function Profile(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField4312623")}
+        {...getOverrideProps(overrides, "TextField4318830")}
       ></TextField>
       <TextAreaField
         width="300px"
@@ -104,7 +108,7 @@ export default function Profile(props) {
         width="300px"
         height="unset"
         label="Email:"
-        placeholder={contact?.email}
+        placeholder="johndoe@gmail.com"
         position="absolute"
         top="288px"
         left="45px"
@@ -112,7 +116,7 @@ export default function Profile(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField4312625")}
+        {...getOverrideProps(overrides, "TextField4318832")}
       ></TextField>
       <Button
         width="unset"
