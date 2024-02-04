@@ -28,7 +28,7 @@ export declare type ProfileOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ProfileProps = React.PropsWithChildren<Partial<ViewProps> & {
-    contact?: any;
+    profile?: any;
 } & {
     overrides?: ProfileOverridesProps | undefined | null;
 }>;

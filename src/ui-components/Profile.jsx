@@ -7,6 +7,8 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { createProfile } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
 import {
   Button,
@@ -17,11 +19,24 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function Profile(props) {
-  const { contact, overrides, ...rest } = props;
-  const [headingChildren, setHeadingChildren] = useState("Name");
-  const buttonOnClick = () => {
-    setHeadingChildren(contact?.name);
+  const { profile, overrides, ...rest } = props;
+  const [
+    textFieldFourThreeOneEightEightThreeZeroValue,
+    setTextFieldFourThreeOneEightEightThreeZeroValue,
+  ] = useState("");
+  const [textAreaFieldValue, setTextAreaFieldValue] = useState("");
+  const buttonOnClick = async () => {
+    await client.graphql({
+      query: createProfile.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldFourThreeOneEightEightThreeZeroValue,
+          description: textAreaFieldValue,
+        },
+      },
+    });
   };
   return (
     <View
@@ -58,7 +73,7 @@ export default function Profile(props) {
           height="unset"
           shrink="0"
           level="1"
-          children={headingChildren}
+          children={profile?.name}
           {...getOverrideProps(overrides, "Heading")}
         ></Heading>
       </Flex>
@@ -80,7 +95,7 @@ export default function Profile(props) {
         width="300px"
         height="unset"
         label="Name:"
-        placeholder="John Doe"
+        placeholder={profile?.name}
         position="absolute"
         top="125px"
         left="45px"
@@ -88,13 +103,17 @@ export default function Profile(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldFourThreeOneEightEightThreeZeroValue}
+        onChange={(event) => {
+          setTextFieldFourThreeOneEightEightThreeZeroValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField4318830")}
       ></TextField>
       <TextAreaField
         width="300px"
         height="unset"
         label="Description:"
-        placeholder="Please write a little about yourself and occupation"
+        placeholder={profile?.description}
         position="absolute"
         top="369px"
         left="45px"
@@ -102,13 +121,17 @@ export default function Profile(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textAreaFieldValue}
+        onChange={(event) => {
+          setTextAreaFieldValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextAreaField")}
       ></TextAreaField>
       <TextField
         width="300px"
         height="unset"
         label="Email:"
-        placeholder="johndoe@gmail.com"
+        placeholder={profile?.email}
         position="absolute"
         top="288px"
         left="45px"
