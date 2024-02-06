@@ -1,3 +1,4 @@
+
 /***************************************************************************
  * The contents of this file were generated with Amplify Studio.           *
  * Please refrain from making any modifications to this file.              *
@@ -170,7 +171,7 @@ export default function EditF(props) {
       {...rest}
     ><TextField
     label="Are you a resident?"
-    isRequired={false}
+    isRequired={true}
     isReadOnly={false}
     value={res}
     onChange={(e) => {
@@ -198,7 +199,7 @@ export default function EditF(props) {
   ></TextField>
   <TextField
     label="To the best of your recollection, have you practiced suturing technique in a wet lab"
-    isRequired={false}
+    isRequired={true}
     isReadOnly={false}
     value={wetLab}
     onChange={(e) => {
@@ -226,7 +227,7 @@ export default function EditF(props) {
   ></TextField>
   <TextField
     label="To the best of your recollection, have you practiced suturing technique using a surgical simulator?"
-    isRequired={false}
+    isRequired={true}
     isReadOnly={false}
     value={sim}
     onChange={(e) => {
@@ -254,7 +255,7 @@ export default function EditF(props) {
   ></TextField>
   <TextField
     label="Based on your recollection of strabismus surgery rotation, do you think the C.A.S.M would be a good model for practicing eye muscle surgery"
-    isRequired={false}
+    isRequired={true}
     isReadOnly={false}
     value={muscle}
     onChange={(e) => {
@@ -282,7 +283,7 @@ export default function EditF(props) {
   ></TextField>
   <TextField
     label='If you answered "No" to the previous question, please provide a short explanation about why.'
-    isRequired={false}
+    isRequired={true}
     isReadOnly={false}
     value={no}
     onChange={(e) => {
@@ -322,5 +323,4 @@ export default function EditF(props) {
     </Grid>
   );
 }
-
 

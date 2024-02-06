@@ -17,14 +17,13 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type TitleOverridesProps = {
-    Title?: PrimitiveOverrideProps<ViewProps>;
-    Heading4244350?: PrimitiveOverrideProps<FlexProps>;
-    Heading4244351?: PrimitiveOverrideProps<HeadingProps>;
-    Heading4244352?: PrimitiveOverrideProps<HeadingProps>;
-    "Corneal Applanation Suturing Model (C.A.S.M)"?: PrimitiveOverrideProps<TextProps>;
+export declare type AboutOverridesProps = {
+    About?: PrimitiveOverrideProps<ViewProps>;
+    Heading?: PrimitiveOverrideProps<HeadingProps>;
+    Badge?: PrimitiveOverrideProps<FlexProps>;
+    label?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type TitleProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: TitleOverridesProps | undefined | null;
+export declare type AboutProps = React.PropsWithChildren<Partial<ViewProps> & {
+    overrides?: AboutOverridesProps | undefined | null;
 }>;
-export default function Title(props: TitleProps): React.ReactElement;
+export default function About(props: AboutProps): React.ReactElement;

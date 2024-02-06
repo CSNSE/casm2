@@ -1,6 +1,43 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getProfile = /* GraphQL */ `
+  query GetProfile($id: ID!) {
+    getProfile(id: $id) {
+      id
+      name
+      phone
+      email
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listProfiles = /* GraphQL */ `
+  query ListProfiles(
+    $filter: ModelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        phone
+        email
+        description
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+
 export const getContact = /* GraphQL */ `
   query GetContact($id: ID!) {
     getContact(id: $id) {
@@ -10,6 +47,8 @@ export const getContact = /* GraphQL */ `
       message
       createdAt
       updatedAt
+      owner
+
       __typename
     }
   }
@@ -28,6 +67,7 @@ export const listContacts = /* GraphQL */ `
         message
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken

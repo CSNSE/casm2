@@ -4,17 +4,28 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as About } from "./About";
 export { default as ConsentForm } from "./ConsentForm";
 export { default as Contact } from "./Contact";
 export { default as ContactCreateForm } from "./ContactCreateForm";
 export { default as ContactUpdateForm } from "./ContactUpdateForm";
+export { default as Hcontact } from "./Hcontact";
 export { default as Home } from "./Home";
+export { default as Hprofile } from "./Hprofile";
+export { default as Images } from "./Images";
+export { default as MContact } from "./MContact";
+export { default as MContactCollection } from "./MContactCollection";
 export { default as ModelEye } from "./ModelEye";
 export { default as ModelVid } from "./ModelVid";
 export { default as ModelVidCollection } from "./ModelVidCollection";
 export { default as Models } from "./Models";
 export { default as Nav } from "./Nav";
 export { default as Nav2 } from "./Nav2";
+export { default as Pic } from "./Pic";
+export { default as Profile } from "./Profile";
+export { default as ProfileCollection } from "./ProfileCollection";
+export { default as ProfileCreateForm } from "./ProfileCreateForm";
+export { default as ProfileUpdateForm } from "./ProfileUpdateForm";
 export { default as Survey } from "./Survey";
 export { default as SurveyCreateForm } from "./SurveyCreateForm";
 export { default as SurveyModelEyeCollection } from "./SurveyModelEyeCollection";

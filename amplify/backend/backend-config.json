@@ -1,12 +1,26 @@
 {
   "api": {
     "casm2": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "casm2999f9247"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authcasm2999f9247"
+              }
             }
           ],
           "defaultAuthentication": {

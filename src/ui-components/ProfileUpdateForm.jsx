@@ -7,20 +7,15 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
-import {
-  fetchByPath,
-  getOverrideProps,
-  processFile,
-  validateField,
-} from "./utils";
+import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { createTodo } from "../graphql/mutations";
-import { Field } from "@aws-amplify/ui-react/internal";
+import { getProfile } from "../graphql/queries";
+import { updateProfile } from "../graphql/mutations";
 const client = generateClient();
-export default function TodoCreateForm(props) {
+export default function ProfileUpdateForm(props) {
   const {
-    clearOnSuccess = true,
+    id: idProp,
+    profile: profileModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -31,25 +26,48 @@ export default function TodoCreateForm(props) {
   } = props;
   const initialValues = {
     name: "",
+    phone: "",
+    email: "",
     description: "",
-    image: undefined,
   };
   const [name, setName] = React.useState(initialValues.name);
+  const [phone, setPhone] = React.useState(initialValues.phone);
+  const [email, setEmail] = React.useState(initialValues.email);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
-  const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.name);
-    setDescription(initialValues.description);
-    setImage(initialValues.image);
+    const cleanValues = profileRecord
+      ? { ...initialValues, ...profileRecord }
+      : initialValues;
+    setName(cleanValues.name);
+    setPhone(cleanValues.phone);
+    setEmail(cleanValues.email);
+    setDescription(cleanValues.description);
     setErrors({});
   };
+  const [profileRecord, setProfileRecord] = React.useState(profileModelProp);
+  React.useEffect(() => {
+    const queryData = async () => {
+      const record = idProp
+        ? (
+            await client.graphql({
+              query: getProfile.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getProfile
+        : profileModelProp;
+      setProfileRecord(record);
+    };
+    queryData();
+  }, [idProp, profileModelProp]);
+  React.useEffect(resetStateValues, [profileRecord]);
   const validations = {
-    name: [{ type: "Required" }],
+    name: [],
+    phone: [{ type: "Phone" }],
+    email: [{ type: "Email" }],
     description: [],
-    image: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -72,15 +90,15 @@ export default function TodoCreateForm(props) {
     <Grid
       as="form"
       rowGap="15px"
-      backgroundColor="rgba(255,255,255,1)"
       columnGap="15px"
       padding="20px"
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          description,
-          image,
+          name: name ?? null,
+          phone: phone ?? null,
+          email: email ?? null,
+          description: description ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -111,18 +129,16 @@ export default function TodoCreateForm(props) {
             }
           });
           await client.graphql({
-            query: createTodo.replaceAll("__typename", ""),
+            query: updateProfile.replaceAll("__typename", ""),
             variables: {
               input: {
+                id: profileRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
-          }
-          if (clearOnSuccess) {
-            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -131,12 +147,12 @@ export default function TodoCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "TodoCreateForm")}
+      {...getOverrideProps(overrides, "ProfileUpdateForm")}
       {...rest}
     >
       <TextField
         label="Name"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={name}
         onChange={(e) => {
@@ -144,8 +160,9 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               name: value,
+              phone,
+              email,
               description,
-              image,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -161,6 +178,61 @@ export default function TodoCreateForm(props) {
         {...getOverrideProps(overrides, "name")}
       ></TextField>
       <TextField
+        label="Phone"
+        isRequired={false}
+        isReadOnly={false}
+        type="tel"
+        value={phone}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              phone: value,
+              email,
+              description,
+            };
+            const result = onChange(modelFields);
+            value = result?.phone ?? value;
+          }
+          if (errors.phone?.hasError) {
+            runValidationTasks("phone", value);
+          }
+          setPhone(value);
+        }}
+        onBlur={() => runValidationTasks("phone", phone)}
+        errorMessage={errors.phone?.errorMessage}
+        hasError={errors.phone?.hasError}
+        {...getOverrideProps(overrides, "phone")}
+      ></TextField>
+      <TextField
+        label="Email"
+        isRequired={false}
+        isReadOnly={false}
+        value={email}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              phone,
+              email: value,
+              description,
+            };
+            const result = onChange(modelFields);
+            value = result?.email ?? value;
+          }
+          if (errors.email?.hasError) {
+            runValidationTasks("email", value);
+          }
+          setEmail(value);
+        }}
+        onBlur={() => runValidationTasks("email", email)}
+        errorMessage={errors.email?.errorMessage}
+        hasError={errors.email?.hasError}
+        {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
         label="Description"
         isRequired={false}
         isReadOnly={false}
@@ -170,8 +242,9 @@ export default function TodoCreateForm(props) {
           if (onChange) {
             const modelFields = {
               name,
+              phone,
+              email,
               description: value,
-              image,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -186,57 +259,20 @@ export default function TodoCreateForm(props) {
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
       ></TextField>
-      <Field
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        label={"Image"}
-        isRequired={false}
-        isReadOnly={false}
-      >
-        <StorageManager
-          onUploadSuccess={({ key }) => {
-            setImage((prev) => {
-              let value = key;
-              if (onChange) {
-                const modelFields = {
-                  name,
-                  description,
-                  image: value,
-                };
-                const result = onChange(modelFields);
-                value = result?.image ?? value;
-              }
-              return value;
-            });
-          }}
-          onFileRemove={({ key }) => {
-            setImage((prev) => {
-              let value = initialValues?.image;
-              if (onChange) {
-                const modelFields = {
-                  name,
-                  description,
-                  image: value,
-                };
-                const result = onChange(modelFields);
-                value = result?.image ?? value;
-              }
-              return value;
-            });
-          }}
-          processFile={processFile}
-          accessLevel={"private"}
-          acceptedFileTypes={[]}
-          isResumable={false}
-          showThumbnails={true}
-          maxFileCount={1}
-          {...getOverrideProps(overrides, "image")}
-        ></StorageManager>
-      </Field>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
+        <Button
+          children="Reset"
+          type="reset"
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || profileModelProp)}
+          {...getOverrideProps(overrides, "ResetButton")}
+        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
@@ -245,7 +281,10 @@ export default function TodoCreateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || profileModelProp) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

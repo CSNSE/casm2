@@ -2,5 +2,11 @@
   "AppSyncApiName": "casm2",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-12-07T16:27:31.434Z"
+  "AuthModeLastUpdated": "2024-01-23T16:33:17.694Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcasm2999f9247",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
