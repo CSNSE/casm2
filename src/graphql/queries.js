@@ -37,6 +37,7 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
+
 export const getContact = /* GraphQL */ `
   query GetContact($id: ID!) {
     getContact(id: $id) {
@@ -47,6 +48,7 @@ export const getContact = /* GraphQL */ `
       createdAt
       updatedAt
       owner
+
       __typename
     }
   }

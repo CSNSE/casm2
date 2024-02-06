@@ -15,6 +15,7 @@ class App extends Component {
 <Route exact path='/ty' element= {<Ty/>} />
 <Route exact path='/model' element= {<div><Nav/><SurveyModelEyeCollection isPaginated itemsPerPage={1}/><ModelVidCollection isPaginated itemsPerPage={1}/><Ty/></div>} />
 <Route exact path='/edit/:cid' element= {<EditF/>} />
+<Route exact path='/contact' element= {<div><Nav/><Contact/></div>} />
 <Route exact path='/video' element= {<div><Nav/><TodoCreateForm/></div>} />
 <Route exact path='/contactm' element= {<div><Nav/><Hcontact/><MContactCollection/></div>} />
 <Route exact path='/updatem' element= {<div><Nav/><TodoUpdateForm/></div>} />
