@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps, HeadingProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, HeadingProps, PhoneNumberFieldProps, TextAreaFieldProps, TextFieldProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,17 +17,19 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ContactOverridesProps = {
-    Contact?: PrimitiveOverrideProps<FlexProps>;
+export declare type ProfileOverridesProps = {
+    Profile?: PrimitiveOverrideProps<ViewProps>;
+    Badge?: PrimitiveOverrideProps<FlexProps>;
     Heading?: PrimitiveOverrideProps<HeadingProps>;
-    TextField42031736?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42031737?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42031738?: PrimitiveOverrideProps<TextFieldProps>;
+    PhoneNumberField?: PrimitiveOverrideProps<PhoneNumberFieldProps>;
+    TextField4318830?: PrimitiveOverrideProps<TextFieldProps>;
+    TextAreaField?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    TextField4318832?: PrimitiveOverrideProps<TextFieldProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type ContactProps = React.PropsWithChildren<Partial<FlexProps> & {
-    Contact?: String;
+export declare type ProfileProps = React.PropsWithChildren<Partial<ViewProps> & {
+    profile?: any;
 } & {
-    overrides?: ContactOverridesProps | undefined | null;
+    overrides?: ProfileOverridesProps | undefined | null;
 }>;
-export default function Contact(props: ContactProps): React.ReactElement;
+export default function Profile(props: ProfileProps): React.ReactElement;

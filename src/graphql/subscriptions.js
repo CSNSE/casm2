@@ -1,41 +1,95 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateProfile = /* GraphQL */ `
+  subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
+    onCreateProfile(filter: $filter) {
+      id
+      name
+      phone
+      email
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateProfile = /* GraphQL */ `
+  subscription OnUpdateProfile($filter: ModelSubscriptionProfileFilterInput) {
+    onUpdateProfile(filter: $filter) {
+      id
+      name
+      phone
+      email
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteProfile = /* GraphQL */ `
+  subscription OnDeleteProfile($filter: ModelSubscriptionProfileFilterInput) {
+    onDeleteProfile(filter: $filter) {
+      id
+      name
+      phone
+      email
+      description
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateContact = /* GraphQL */ `
-  subscription OnCreateContact($filter: ModelSubscriptionContactFilterInput) {
-    onCreateContact(filter: $filter) {
+  subscription OnCreateContact(
+    $filter: ModelSubscriptionContactFilterInput
+    $owner: String
+  ) {
+    onCreateContact(filter: $filter, owner: $owner) {
       id
       name
       email
       message
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateContact = /* GraphQL */ `
-  subscription OnUpdateContact($filter: ModelSubscriptionContactFilterInput) {
-    onUpdateContact(filter: $filter) {
+  subscription OnUpdateContact(
+    $filter: ModelSubscriptionContactFilterInput
+    $owner: String
+  ) {
+    onUpdateContact(filter: $filter, owner: $owner) {
       id
       name
       email
       message
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteContact = /* GraphQL */ `
-  subscription OnDeleteContact($filter: ModelSubscriptionContactFilterInput) {
-    onDeleteContact(filter: $filter) {
+  subscription OnDeleteContact(
+    $filter: ModelSubscriptionContactFilterInput
+    $owner: String
+  ) {
+    onDeleteContact(filter: $filter, owner: $owner) {
       id
       name
       email
       message
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
