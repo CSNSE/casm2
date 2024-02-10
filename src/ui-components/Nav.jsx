@@ -26,9 +26,15 @@ function Nav() {
     top: '100%',
     left: 0,
     right: 0,
-    backgroundColor: '#f8f8f8', // Dropdown background
-    color: '#364668', // Text color
-    fontSize: '14px',
+    background: `
+    linear-gradient(to right, 
+      #FFFFFF00 0%, 
+      #7188b4 30%, 
+      #7188b4 70%, 
+      #FFFFFF00 100% 
+    )`,
+    color: '#FFFFFF', // Text color
+    fontSize: '18px',
     zIndex: 1000,
   };
 
@@ -52,7 +58,10 @@ function Nav() {
         <ul style={dropdownMenuStyle}>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/')}>Home</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/about')}>About</li>
-          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/services')}>Services</li>
+          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/consent')}>Survey</li>
+          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/video')}>Upload Images</li>
+          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/model')}>Collection</li>
+          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/profile')}>Profile</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/contact')}>Contact</li>
         </ul>
       )}
