@@ -18,7 +18,7 @@ class App extends Component {
 <Route exact path='/edit/:cid' element= {<EditF/>} />
 <Route exact path='/contact' element= {<div><Nav/><Contact/></div>} />
 <Route exact path='/video' element= {<div><Nav/><TodoCreateForm/></div>} />
-<Route exact path='/profile' element= {<div><Nav/><Hprofile/><Profile/><Pic/></div>} />
+<Route exact path='/profile' element= {<div><Nav/><Profile/></div>} />
 <Route exact path='/modv' element= {<div><Nav/><ModelVidCollection/></div>} />
 <Route exact path='/home' element= {<div><Nav/><Title/></div>} 
 />

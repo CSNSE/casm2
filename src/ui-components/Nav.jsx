@@ -48,7 +48,6 @@ function Nav() {
     navigate(path);
     setIsMenuOpen(false); // Close the menu
   };
-
   return (
     <nav style={navStyle}>
       <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} style={menuIconStyle}>
