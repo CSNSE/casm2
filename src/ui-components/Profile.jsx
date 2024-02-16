@@ -37,7 +37,7 @@ function UserProfile() {
     maxWidth: '600px',
     margin: '0 auto',
     padding: '20px',
-    backgroundColor: '#270',
+    backgroundColor: 'rgba(4,125,149,1)',
     borderRadius: '5px',
   };
 
