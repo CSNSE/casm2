@@ -72,7 +72,6 @@ export default function TodoCreateForm(props) {
     <Grid
       as="form"
       rowGap="15px"
-      backgroundColor="rgba(255,255,255,1)"
       columnGap="15px"
       padding="20px"
       onSubmit={async (event) => {

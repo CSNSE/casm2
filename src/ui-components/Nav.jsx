@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-
   const navStyle = {
     position: 'relative',
     padding: '10px',
     backgroundColor: '#f8f8f8',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   };
-
   const menuIconStyle = {
     fontSize: '24px',
     cursor: 'pointer',
     userSelect: 'none',
   };
-
   const dropdownMenuStyle = {
     listStyle: 'none',
     padding: 0,
@@ -37,17 +33,16 @@ function Nav() {
     fontSize: '18px',
     zIndex: 1000,
   };
-
   const dropdownMenuItemStyle = {
     padding: '15px',
     borderBottom: '1px solid #dddddd',
     cursor: 'pointer',
   };
-
   const handleNavigate = (path) => {
     navigate(path);
     setIsMenuOpen(false); // Close the menu
   };
+
   return (
     <nav style={navStyle}>
       <div className="menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)} style={menuIconStyle}>
@@ -60,6 +55,7 @@ function Nav() {
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/consent')}>Survey</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/video')}>Upload Images</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/model')}>Collection</li>
+          <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/links')}>Links</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/profile')}>Profile</li>
           <li style={dropdownMenuItemStyle} onClick={() => handleNavigate('/contact')}>Contact</li>
         </ul>
@@ -67,5 +63,4 @@ function Nav() {
     </nav>
   );
 }
-
 export default Nav;

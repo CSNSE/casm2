@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, ImageProps, RatingProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, TextAreaFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +17,13 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type PicOverridesProps = {
-    Pic?: PrimitiveOverrideProps<FlexProps>;
-    Rating?: PrimitiveOverrideProps<RatingProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
+export declare type FeedbackOverridesProps = {
+    Feedback?: PrimitiveOverrideProps<FlexProps>;
+    TextAreaField44271919?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    TextAreaField44271926?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type PicProps = React.PropsWithChildren<Partial<FlexProps> & {
-    todo?: any;
-} & {
-    overrides?: PicOverridesProps | undefined | null;
+export declare type FeedbackProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: FeedbackOverridesProps | undefined | null;
 }>;
-export default function Pic(props: PicProps): React.ReactElement;
+export default function Feedback(props: FeedbackProps): React.ReactElement;

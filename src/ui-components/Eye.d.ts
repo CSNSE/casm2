@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, ImageProps, RatingProps } from "@aws-amplify/ui-react";
+import { BadgeProps, ButtonProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +17,13 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type PicOverridesProps = {
-    Pic?: PrimitiveOverrideProps<FlexProps>;
-    Rating?: PrimitiveOverrideProps<RatingProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
+export declare type EyeOverridesProps = {
+    Eye?: PrimitiveOverrideProps<FlexProps>;
+    Badge?: PrimitiveOverrideProps<BadgeProps>;
+    "Biomedical devices for the eye, such as advanced prosthetics and implantable lenses, are transforming the treatment of vision impairment and blindness. Retinal implants, for example, can restore vision for those with retinitis pigmentosa, while artificial corneas offer new hope for corneal blindness."?: PrimitiveOverrideProps<TextProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type PicProps = React.PropsWithChildren<Partial<FlexProps> & {
-    todo?: any;
-} & {
-    overrides?: PicOverridesProps | undefined | null;
+export declare type EyeProps = React.PropsWithChildren<Partial<FlexProps> & {
+    overrides?: EyeOverridesProps | undefined | null;
 }>;
-export default function Pic(props: PicProps): React.ReactElement;
+export default function Eye(props: EyeProps): React.ReactElement;

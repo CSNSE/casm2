@@ -1,96 +1,123 @@
 import React, { useState, useEffect } from 'react';
 
-function UserProfile() {
-  const [profile, setProfile] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: ''
-  });
+const Profile = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [initials, setInitials] = useState('');
 
-  // Load profile data from localStorage when the component mounts
+  // Load stored data on mount
   useEffect(() => {
-    const savedProfile = localStorage.getItem('userProfile');
-    if (savedProfile) {
-      setProfile(JSON.parse(savedProfile));
-    }
+    const storedName = localStorage.getItem('name');
+    const storedEmail = localStorage.getItem('email');
+    const storedPhoneNumber = localStorage.getItem('phoneNumber');
+    setName(storedName || '');
+    setEmail(storedEmail || '');
+    setPhoneNumber(storedPhoneNumber || '');
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfile(prevProfile => ({
-      ...prevProfile,
-      [name]: value
-    }));
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    localStorage.setItem('userProfile', JSON.stringify(profile));
-    console.log('Profile Saved:', profile);
-    // Optionally, indicate to the user that the profile has been saved
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  // Inline styles for the form container
-  const pageStyle = {
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const nameParts = name.toUpperCase().split(' ');
+    const initials = nameParts.map(part => part[0]).join('');
+    setInitials(initials);
+    // Save to local storage
+    localStorage.setItem('name', name);
+    localStorage.setItem('email', email);
+    localStorage.setItem('phoneNumber', phoneNumber);
+  };
+
+  const inputStyle = {
+    background: 'transparent',
+    border: 'none',
+    borderBottom: '2px solid white',
+    borderRadius: '25px',
+    padding: '10px',
+    margin: '10px 0',
+    width: 'calc(100% - 20px)',
     color: 'white',
-    maxWidth: '600px',
-    margin: '0 auto',
-    padding: '20px',
-    backgroundColor: 'rgba(4,125,149,1)',
-    borderRadius: '5px',
+  };
+
+  const labelStyle = {
+    color: 'white',
+    display: 'block',
+    margin: '5px 0',
   };
 
   return (
-    <form onSubmit={handleSave} style={pageStyle}>
-      <h2>User Profile</h2>
-      <label>
-        First Name:
-        <input
-          type="text"
-          name="firstName"
-          value={profile.firstName || ''}
-          onChange={handleChange}
-          style={{margin: '10px 0'}}
-        />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input
-          type="text"
-          name="lastName"
-          value={profile.lastName || ''}
-          onChange={handleChange}
-          style={{margin: '10px 0'}}
-        />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={profile.email || ''}
-          onChange={handleChange}
-          style={{margin: '10px 0'}}
-        />
-      </label>
-      <br />
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={profile.phoneNumber || ''}
-          onChange={handleChange}
-          style={{margin: '10px 0'}}
-        />
-      </label>
-      <br />
-      <button type="submit" style={{cursor: 'pointer'}}>Save</button>
-    </form>
+    <div style={{ padding: '20px', color: 'white' }}>
+      <form onSubmit={handleSubmit}>
+        <div style={{
+          height: '100px',
+          width: '100px',
+          borderRadius: '50%',
+          backgroundColor: '#ADD8E6',
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '40px',
+          margin: '0 auto 20px'
+        }}>
+          {initials}
+        </div>
+        <div>
+          <label htmlFor="name" style={labelStyle}>Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={handleNameChange}
+            required
+            style={inputStyle}
+          />
+        </div>
+        <div>
+          <label htmlFor="email" style={labelStyle}>Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+            style={inputStyle}
+          />
+        </div>
+        <div>
+          <label htmlFor="phoneNumber" style={labelStyle}>Phone Number:</label>
+          <input
+            type="tel"
+            id="phoneNumber"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+            required
+            style={inputStyle}
+          />
+        </div>
+        <button type="submit" style={{
+          background: '#ADD8E6',
+          border: 'none',
+          borderRadius: '25px',
+          padding: '10px 20px',
+          margin: '10px 0',
+          color: '#394766',
+          fontWeight: 'bold',
+        }}>Save</button>
+      </form>
+    </div>
   );
-}
+};
 
-export default UserProfile;
+export default Profile;

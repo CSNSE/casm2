@@ -7,46 +7,46 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
+import { FaEye } from 'react-icons/fa';
 import { Heading, View } from "@aws-amplify/ui-react";
+
 export default function Home(props) {
   const { overrides, ...rest } = props;
   return (
     <View
       width="390px"
       height="844px"
-      display="block"
-      gap="unset"
-      alignItems="unset"
-      justifyContent="unset"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
       position="relative"
       padding="0px 0px 0px 0px"
+      background="linear-gradient(90deg, rgba(0,0,255,1) 0%, rgba(173,216,230,1) 50%, rgba(0,0,255,1) 100%)"
       {...getOverrideProps(overrides, "Home")}
       {...rest}
     >
-      <View
-        width="390px"
-        height="844px"
-        {...getOverrideProps(overrides, "CASM")}
-      ></View>
+      <FaEye size="100px" color="black" style={{ position: "absolute", top: "calc(50% - 250px)" }} />
       <Heading
-        width="unset"
-        height="unset"
+        level="3"
+        children="C.A.S.M"
         position="absolute"
-        top="93px"
-        left="62px"
-        level="1"
-        children="Corneal &#xA;Applanation&#xA;Suturing &#xA;Model"
-        {...getOverrideProps(overrides, "Heading40672535")}
+        top="calc(50% - 100px)"
+        {...getOverrideProps(overrides, "HeadingCASMBelowIcon")}
       ></Heading>
       <Heading
-        width="unset"
-        height="unset"
+        level="4"
+        children="Corneal Applanation Suturing Model"
         position="absolute"
-        top="745px"
-        left="26px"
-        level="1"
+        top="calc(50% - 50px)"
+        {...getOverrideProps(overrides, "HeadingCornealApplanation")}
+      ></Heading>
+      <Heading
+        level="6"
         children="Patent Pending"
-        {...getOverrideProps(overrides, "Heading40672571")}
+        position="absolute"
+        top="calc(50% + 30px)"
+        {...getOverrideProps(overrides, "HeadingPatentPending")}
       ></Heading>
     </View>
   );

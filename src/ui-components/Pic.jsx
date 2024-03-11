@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "./utils";
 import { Flex, Image, Rating } from "@aws-amplify/ui-react";
 export default function Pic(props) {
-  const { overrides, ...rest } = props;
+  const { todo, overrides, ...rest } = props;
   return (
     <Flex
       gap="15px"
@@ -29,6 +29,7 @@ export default function Pic(props) {
         height="unset"
         shrink="0"
         size="default"
+        aria-live=""
         {...getOverrideProps(overrides, "Rating")}
       ></Rating>
       <Image
@@ -42,6 +43,7 @@ export default function Pic(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"
+        src={todo?.image}
         {...getOverrideProps(overrides, "image")}
       ></Image>
     </Flex>

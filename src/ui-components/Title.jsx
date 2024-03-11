@@ -1,48 +1,66 @@
-import React from 'react';
-import { FiEye } from 'react-icons/fi'; // Importing an eye icon from react-icons
+/***************************************************************************
+ * The contents of this file were generated with Amplify Studio.           *
+ * Please refrain from making any modifications to this file.              *
+ * Any changes to this file will be overwritten when running amplify pull. *
+ **************************************************************************/
 
-const Title = () => {
-  // Inline styles
-  const containerStyle = {
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: 'linear-gradient(to right, #364667 0%, #4f6695 50%, #364667 100%)',
-    //'linear-gradient(to right, #364667 10%, #FFFFFF 80%, #364667 10%)',
-    color: '#fff',
-    textAlign: 'center',
-  };
+/* eslint-disable */
+import * as React from "react";
+import { getOverrideProps } from "./utils";
+import { FaEye } from 'react-icons/fa';
+import { Heading, View } from "@aws-amplify/ui-react";
 
-  const iconStyle = {
-    fontSize: '2rem', // Adjust size as needed
-    marginBottom: '20px',
-  };
-
-  const titleStyle = {
-    fontSize: '1.5rem',
-    marginBottom: '10px',
-  };
-
-  const subtitleStyle = {
-    fontSize: '1.2rem',
-    marginBottom: '5px',
-  };
-
-  const statusStyle = {
-    fontSize: '1rem',
-    fontStyle: 'italic',
-  };
-
+export default function Home(props) {
+  const { overrides, ...rest } = props;
   return (
-    <div style={containerStyle}>
-      <FiEye style={iconStyle} />
-      <h1 style={titleStyle}>Corneal Applanation Suturing Model</h1>
-      <h2 style={subtitleStyle}>Sonia Patel</h2>
-      <p style={statusStyle}>Patent Pending</p>
-    </div>
+    <View
+      width="390px"
+      height="844px"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      position="relative"
+      padding="0px 0px 0px 0px"
+      style={{
+        background: "linear-gradient(90deg, #394766 0%, #4a5680 50%, #394766 100%)",
+      }}
+      {...getOverrideProps(overrides, "Home")}
+      {...rest}
+    >
+      <FaEye size="100px" color="white" style={{ position: "absolute", top: "calc(50% - 250px)" }} />
+      <Heading
+        level="3"
+        children="C.A.S.M"
+        position="absolute"
+        top="calc(50% - 100px)"
+        color="#FFFFFF"
+        {...getOverrideProps(overrides, "HeadingCASMBelowIcon")}
+      ></Heading>
+      <Heading
+        level="4"
+        children="Corneal Applanation Suturing Model"
+        position="absolute"
+        top="calc(50% - 50px)"
+        color="#FFFFFF"
+        {...getOverrideProps(overrides, "HeadingCornealApplanation")}
+      ></Heading>
+      <Heading
+        level="5"
+        children="Sonia Patel"
+        position="absolute"
+        top="calc(50% + 10px)"
+        color="#FFFFFF"
+        {...getOverrideProps(overrides, "HeadingYourName")}
+      ></Heading>
+      <Heading
+        level="6"
+        children="Patent Pending"
+        position="absolute"
+        top="calc(50% + 50px)"
+        color="#FFFFFF"
+        {...getOverrideProps(overrides, "HeadingPatentPending")}
+      ></Heading>
+    </View>
   );
-};
-
-export default Title;
+}
